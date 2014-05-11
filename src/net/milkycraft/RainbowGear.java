@@ -26,7 +26,6 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
-		// Register listeners for enabling/disabling color shifts
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
@@ -48,14 +47,12 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
-		// Clean up hashmap and tasks
 		workerz = null;
 		Bukkit.getScheduler().cancelTasks(this);
 	}
 
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e) {
-		// Iterate map, check if r. armor is active and if so, disable
 		this.cancel(e.getPlayer());
 	}
 	
@@ -63,14 +60,12 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onSneak(org.bukkit.event.player.PlayerToggleSneakEvent e) {		
 		Player p = e.getPlayer();
-		//Simple check to save CPU, dont bother scanning armor slots if they have a worker
 		if(this.hasWorker(p.getName())){
 			return;
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
 				ItemMeta meta = is.getItemMeta();
-				// Verify item has proper lore
 				if (isWorthy(meta)) {
 					this.initWorker(p);	
 					return;
@@ -80,11 +75,8 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	public static boolean isWorthy(ItemMeta meta) {
-		// Easy boolean check
 		if (meta.hasLore()) {
-			// List is usually one element, iteration is fast
 			for (String lore : meta.getLore()) {
-				// .equals() > .equalsIgnoreCase()
 				if (lore.equals("RAINBOW")) {
 					return true;
 				}
@@ -94,31 +86,21 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	private void initWorker(Player p) {
-		// Generate a worker object for the player
 		Worker rw = new Worker(new Sinebow(), p.getName());
-		// Create a TaskTimer, running Synchronously
 		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, 5, 5);
-		// Assign Task ID to worker, used when we cancel the task.
 		rw.setId(id.getTaskId());
-		// Store worker in memory for iteration later
 		workerz.put(p.getName(), rw);
-		// Message player they have activated the armor
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
 	}
 
 	public boolean hasWorker(String player) {
-		// Checks if player has a worker active
 		return workerz.containsKey(player);
 	}
 
 	public void cancel(Player p) {
-		// Cant cancel without a available worker
 		if (hasWorker(p.getName())) {
-			// Retrieve the worker
 			Worker w = workerz.get(p.getName());
-			// Cancel the workers task id
 			Bukkit.getScheduler().cancelTask(w.getId());
-			// Remove the worker from memory
 			workerz.remove(p.getName());
 		}
 	}
