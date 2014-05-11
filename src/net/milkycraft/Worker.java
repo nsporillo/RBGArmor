@@ -21,24 +21,23 @@ public class Worker implements Runnable {
 
 	@Override
 	public void run() {
-		// Retrieves the next color in the series
 		Color c = rain.getNext();
-		// Iterates all armor slots
+		int colored = 4;
 		for (ItemStack is : inv.getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
-				/*
-				 * Redundant check to ensure user does not enable rainbow armor,
-				 * and the switch it out with regular leather armor and still
-				 * have it colorize
-				 */
 				if (!RainbowGear.isWorthy(is.getItemMeta())) {
+					colored--;
 					continue;
 				}
-				// Apply the color to the leather armor peice
 				LeatherArmorMeta lam = (LeatherArmorMeta) is.getItemMeta();
 				lam.setColor(c);
 				is.setItemMeta(lam);
 			}
+		}
+		if(colored == 0) {
+			System.out.println("No colored armor in inventory! Cancelled update task");
+			
+			Bukkit.getScheduler().cancelTask(id);
 		}
 	}
 
