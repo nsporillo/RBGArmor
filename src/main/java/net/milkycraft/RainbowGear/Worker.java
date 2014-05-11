@@ -22,22 +22,15 @@ public class Worker implements Runnable {
 	@Override
 	public void run() {
 		Color c = rain.getNext();
-		int colored = 4;
 		for (ItemStack is : inv.getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
 				if (!RainbowGear.isWorthy(is.getItemMeta())) {
-					colored--;
 					continue;
 				}
 				LeatherArmorMeta lam = (LeatherArmorMeta) is.getItemMeta();
 				lam.setColor(c);
 				is.setItemMeta(lam);
 			}
-		}
-		if(colored == 0) {
-			System.out.println("No colored armor in inventory! Cancelled update task");
-			
-			Bukkit.getScheduler().cancelTask(id);
 		}
 	}
 
