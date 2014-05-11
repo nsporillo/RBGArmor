@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -32,7 +33,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 			@Override
 			public void run() {
-				final double f = (7.0 / 64);
+				final double f = (7.0 / 64.0);
 				for (int i = 0; i < 64; ++i) {
 					double r = sin(f * i + 0.0D) * 127.0D + 128.0D;
 					double g = sin(f * i + (2 * PI / 3)) * 127.0D + 128.0D;
@@ -48,7 +49,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
-		workerz = null;
+		workerz.clear();
 		Bukkit.getScheduler().cancelTasks(this);
 	}
 
@@ -56,19 +57,18 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	public void onLeave(PlayerQuitEvent e) {
 		this.cancel(e.getPlayer());
 	}
-	
 
 	@EventHandler
-	public void onSneak(org.bukkit.event.player.PlayerToggleSneakEvent e) {		
+	public void onSneak(PlayerToggleSneakEvent e) {
 		Player p = e.getPlayer();
-		if(this.hasWorker(p.getUniqueId())){
+		if (this.hasWorker(p.getUniqueId())) {
 			return;
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
 				ItemMeta meta = is.getItemMeta();
 				if (isWorthy(meta)) {
-					this.initWorker(p);	
+					this.initWorker(p);
 					return;
 				}
 			}
