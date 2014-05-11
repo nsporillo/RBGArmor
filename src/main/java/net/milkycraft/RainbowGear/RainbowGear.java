@@ -40,10 +40,8 @@ public class RainbowGear extends JavaPlugin implements Listener {
 					double b = sin(f * i + (4 * PI / 3)) * 127.0D + 128.0D;
 					rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
 				}
-				RainbowGear.this.getLogger().info(
-						"[Post-Startup] Generated Color Array for Sine Bow");
+				getLogger().info("[Post-Startup] Generated rainbow colors");
 			}
-
 		});
 	}
 
@@ -61,7 +59,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onSneak(PlayerToggleSneakEvent e) {
 		Player p = e.getPlayer();
-		if (this.hasWorker(p.getUniqueId())) {
+		if (workerz.containsKey(p.getUniqueId())) {
 			return;
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
@@ -94,12 +92,8 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
 	}
 
-	public boolean hasWorker(UUID uuid) {
-		return workerz.containsKey(uuid);
-	}
-
 	public void cancel(Player p) {
-		if (hasWorker(p.getUniqueId())) {
+		if (workerz.containsKey(p.getUniqueId())) {
 			Worker w = workerz.get(p.getUniqueId());
 			Bukkit.getScheduler().cancelTask(w.getId());
 			workerz.remove(p.getUniqueId());
