@@ -64,8 +64,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
-				ItemMeta meta = is.getItemMeta();
-				if (isWorthy(meta)) {
+				if (isWorthy(is.getItemMeta())) {
 					this.initWorker(p);
 					return;
 				}
@@ -85,9 +84,9 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	private void initWorker(Player p) {
-		Worker rw = new Worker(new Sinebow(), p.getUniqueId());
+		Worker rw = new Worker(p.getUniqueId());
 		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, 5, 5);
-		rw.setId(id.getTaskId());
+		rw.setUniqueId(id.getTaskId());
 		workerz.put(p.getUniqueId(), rw);
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
 	}
@@ -95,7 +94,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	public void cancel(Player p) {
 		if (workerz.containsKey(p.getUniqueId())) {
 			Worker w = workerz.get(p.getUniqueId());
-			Bukkit.getScheduler().cancelTask(w.getId());
+			Bukkit.getScheduler().cancelTask(w.getUniqueId());
 			workerz.remove(p.getUniqueId());
 		}
 	}

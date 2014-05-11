@@ -11,17 +11,18 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Worker implements Runnable {
 
 	private PlayerInventory inv;
-	private Sinebow rain;
-	private int id;
+	private int c = -1;
+	private final int t;
+	private int uid;
 
-	public Worker(Sinebow r, UUID uuid) {
-		this.rain = r;
+	public Worker(UUID uuid) {
+		this.t = (RainbowGear.rb.length - 2);
 		this.inv = Bukkit.getPlayer(uuid).getInventory();
 	}
 
 	@Override
 	public void run() {
-		Color c = rain.getNext();
+		Color c = Worker.this.getNext();
 		for (ItemStack is : inv.getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
 				if (!RainbowGear.isWorthy(is.getItemMeta())) {
@@ -29,16 +30,24 @@ public class Worker implements Runnable {
 				}
 				LeatherArmorMeta lam = (LeatherArmorMeta) is.getItemMeta();
 				lam.setColor(c);
+				lam.setDisplayName(c.toString().toLowerCase());
 				is.setItemMeta(lam);
 			}
 		}
 	}
-
-	public int getId() {
-		return id;
+	
+	public Color getNext() {
+		if (c > t)
+			c = -1;
+		c++;
+		return RainbowGear.rb[c];
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getUniqueId() {
+		return uid;
+	}
+
+	public void setUniqueId(int id) {
+		this.uid = id;
 	}
 }
