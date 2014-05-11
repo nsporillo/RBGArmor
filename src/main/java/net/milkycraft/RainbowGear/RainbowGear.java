@@ -53,7 +53,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e) {
-		this.cancel(e.getPlayer());
+		this.cancel(e.getPlayer().getUniqueId());
 	}
 
 	@EventHandler
@@ -91,11 +91,11 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
 	}
 
-	public void cancel(Player p) {
-		if (workerz.containsKey(p.getUniqueId())) {
-			Worker w = workerz.get(p.getUniqueId());
+	public void cancel(UUID uuid) {
+		if (workerz.containsKey(uuid)) {
+			Worker w = workerz.get(uuid);
 			Bukkit.getScheduler().cancelTask(w.getUniqueId());
-			workerz.remove(p.getUniqueId());
+			workerz.remove(uuid);
 		}
 	}
 }
