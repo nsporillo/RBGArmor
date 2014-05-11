@@ -6,6 +6,7 @@ import static org.bukkit.ChatColor.GOLD;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -21,7 +22,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class RainbowGear extends JavaPlugin implements Listener {
 
-	private Map<String, Worker> workerz = new HashMap<String, Worker>();
+	private Map<UUID, Worker> workerz = new HashMap<UUID, Worker>();
 	public static Color[] rb = new Color[64];
 
 	@Override
@@ -60,7 +61,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onSneak(org.bukkit.event.player.PlayerToggleSneakEvent e) {		
 		Player p = e.getPlayer();
-		if(this.hasWorker(p.getName())){
+		if(this.hasWorker(p.getUniqueId())){
 			return;
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
@@ -86,22 +87,22 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	private void initWorker(Player p) {
-		Worker rw = new Worker(new Sinebow(), p.getName());
+		Worker rw = new Worker(new Sinebow(), p.getUniqueId());
 		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, 5, 5);
 		rw.setId(id.getTaskId());
-		workerz.put(p.getName(), rw);
+		workerz.put(p.getUniqueId(), rw);
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
 	}
 
-	public boolean hasWorker(String player) {
-		return workerz.containsKey(player);
+	public boolean hasWorker(UUID uuid) {
+		return workerz.containsKey(uuid);
 	}
 
 	public void cancel(Player p) {
-		if (hasWorker(p.getName())) {
-			Worker w = workerz.get(p.getName());
+		if (hasWorker(p.getUniqueId())) {
+			Worker w = workerz.get(p.getUniqueId());
 			Bukkit.getScheduler().cancelTask(w.getId());
-			workerz.remove(p.getName());
+			workerz.remove(p.getUniqueId());
 		}
 	}
 }

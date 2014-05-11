@@ -1,5 +1,7 @@
 package net.milkycraft;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
@@ -12,9 +14,9 @@ public class Worker implements Runnable {
 	private Sinebow rain;
 	private int id;
 
-	public Worker(Sinebow r, String p) {
+	public Worker(Sinebow r, UUID uuid) {
 		this.rain = r;
-		this.inv = Bukkit.getPlayerExact(p).getInventory();
+		this.inv = Bukkit.getPlayer(uuid).getInventory();
 	}
 
 	@Override
