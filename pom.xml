@@ -4,11 +4,10 @@
 
   <groupId>net.milkycraft</groupId>
   <artifactId>RainbowGear</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.9.9</version>
   <packaging>jar</packaging>
 
   <name>RainbowGear</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,4 +28,35 @@
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
     </repositories>
+  <build>
+    <!-- Filter only plugin.yml -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>plugin.yml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>plugin.yml</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <!-- Minimum Minecraft requirement -->
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

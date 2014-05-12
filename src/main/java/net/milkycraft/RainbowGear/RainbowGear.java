@@ -31,7 +31,6 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
-			@Override
 			public void run() {
 				final double f = (7.0 / 64.0);
 				for (int i = 0; i < 64; ++i) {

@@ -20,7 +20,6 @@ public class Worker implements Runnable {
 		this.inv = Bukkit.getPlayer(uuid).getInventory();
 	}
 
-	@Override
 	public void run() {
 		Color c = Worker.this.getNext();
 		for (ItemStack is : inv.getArmorContents()) {
@@ -30,7 +29,6 @@ public class Worker implements Runnable {
 				}
 				LeatherArmorMeta lam = (LeatherArmorMeta) is.getItemMeta();
 				lam.setColor(c);
-				lam.setDisplayName(c.toString().toLowerCase());
 				is.setItemMeta(lam);
 			}
 		}
