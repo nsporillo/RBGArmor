@@ -16,7 +16,7 @@ public class Worker implements Runnable {
 	private int uid;
 
 	public Worker(UUID uuid) {
-		this.t = (RainbowGear.rb.length - 2);
+		this.t = (RainbowGear.rb.length - 1);
 		this.inv = Bukkit.getPlayer(uuid).getInventory();
 	}
 
@@ -37,7 +37,7 @@ public class Worker implements Runnable {
 	}
 	
 	public Color getNext() {
-		if (c > t)
+		if (c >= t)
 			c = -1;
 		c++;
 		return RainbowGear.rb[c];
