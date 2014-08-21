@@ -37,8 +37,7 @@ public class Worker implements Runnable {
 	public Color getNext() {
 		if (c >= t)
 			c = -1;
-		c++;
-		return RainbowGear.rb[c];
+		return RainbowGear.rb[++c];
 	}
 
 	public int getUniqueId() {
