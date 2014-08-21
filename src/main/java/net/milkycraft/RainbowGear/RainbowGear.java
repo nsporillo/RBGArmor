@@ -58,24 +58,20 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onSneak(PlayerToggleSneakEvent e) {
 		Player p = e.getPlayer();
-		if (workerz.containsKey(p.getUniqueId())) {
-			return;
-		}
-		for (ItemStack is : p.getInventory().getArmorContents()) {
-			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
-				if (isWorthy(is.getItemMeta())) {
-					this.initWorker(p);
-					return;
+		if (!workerz.containsKey(p.getUniqueId())) {
+			for (ItemStack is : p.getInventory().getArmorContents()) {
+				if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
+					if (isWorthy(is.getItemMeta())) {
+						this.initWorker(p);
+						return;
+					}
 				}
 			}
 		}
 	}
-	
-	public static boolean isWorthy(ItemMeta meta) {
-		if(meta.hasLore()) {
-			return meta.getLore().contains("RAINBOW");
-		} 
-		return false;
+
+	public static boolean isWorthy(ItemMeta meta) {		
+		return meta.hasLore() ? meta.getLore().contains("RAINBOW") : false;
 	}
 
 	private void initWorker(Player p) {
