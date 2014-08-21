@@ -34,7 +34,7 @@ public class Worker implements Runnable {
 		}
 	}
 	
-	public Color getNext() {
+	private Color getNext() {
 		if (c >= t)
 			c = -1;
 		return RainbowGear.rb[++c];
