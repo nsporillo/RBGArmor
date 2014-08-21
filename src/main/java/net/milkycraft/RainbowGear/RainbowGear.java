@@ -63,26 +63,15 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		}
 		for (ItemStack is : p.getInventory().getArmorContents()) {
 			if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
-				if (_isWorthy(is.getItemMeta())) {
+				if (isWorthy(is.getItemMeta())) {
 					this.initWorker(p);
 					return;
 				}
 			}
 		}
 	}
-
-	public static boolean isWorthy(ItemMeta meta) {
-		if (meta.hasLore()) {
-			for (String lore : meta.getLore()) {
-				if (lore.equals("RAINBOW")) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 	
-	public static boolean _isWorthy(ItemMeta meta) {
+	public static boolean isWorthy(ItemMeta meta) {
 		if(meta.hasLore()) {
 			return meta.getLore().contains("RAINBOW");
 		} 
