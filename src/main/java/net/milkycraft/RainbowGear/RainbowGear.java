@@ -24,7 +24,7 @@ import org.bukkit.scheduler.BukkitTask;
 public class RainbowGear extends JavaPlugin implements Listener {
 
 	private Map<UUID, Worker> workerz = new HashMap<UUID, Worker>();
-	public static Color[] rb = new Color[64];
+	public final static Color[] rb = new Color[64];
 
 	@Override
 	public void onEnable() {
@@ -52,7 +52,12 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e) {
-		this.cancel(e.getPlayer().getUniqueId());
+		final UUID uuid = e.getPlayer().getUniqueId();
+		if (workerz.containsKey(uuid)) {
+			Worker w = workerz.get(uuid);
+			Bukkit.getScheduler().cancelTask(w.getUniqueId());
+			workerz.remove(uuid);
+		}
 	}
 
 	@EventHandler
@@ -80,13 +85,5 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		rw.setUniqueId(id.getTaskId());
 		workerz.put(p.getUniqueId(), rw);
 		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
-	}
-
-	public void cancel(UUID uuid) {
-		if (workerz.containsKey(uuid)) {
-			Worker w = workerz.get(uuid);
-			Bukkit.getScheduler().cancelTask(w.getUniqueId());
-			workerz.remove(uuid);
-		}
 	}
 }
