@@ -1,4 +1,0 @@
-name: RainbowGear
-author: milkywayz 
-main: net.milkycraft.RainbowGear.RainbowGear
-version: ${project.version}

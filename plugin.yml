@@ -1,0 +1,8 @@
+name: RainbowGear
+author: milkywayz 
+main: net.moderngalaxy.RainbowGear
+version: 1.0
+commands:   
+    rainbowgear:      
+      aliases: rg      
+      description: The main command for rg

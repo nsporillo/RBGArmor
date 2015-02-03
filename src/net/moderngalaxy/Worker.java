@@ -1,4 +1,4 @@
-package net.milkycraft.RainbowGear;
+package net.moderngalaxy;
 
 import java.util.UUID;
 
@@ -20,6 +20,7 @@ public class Worker implements Runnable {
 		this.inv = Bukkit.getPlayer(uuid).getInventory();
 	}
 
+	@Override
 	public void run() {
 		Color c = Worker.this.getNext();
 		for (ItemStack is : inv.getArmorContents()) {

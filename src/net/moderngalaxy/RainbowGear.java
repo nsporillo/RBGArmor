@@ -1,15 +1,19 @@
-package net.milkycraft.RainbowGear;
+package net.moderngalaxy;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
 import static org.bukkit.ChatColor.GOLD;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,6 +35,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
+			@Override
 			public void run() {
 				final double f = (7.0 / 64.0);
 				for (int i = 0; i < 64; ++i) {
@@ -42,6 +47,24 @@ public class RainbowGear extends JavaPlugin implements Listener {
 				getLogger().info("[Post-Startup] Generated rainbow colors");
 			}
 		});
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (sender.isOp()) {
+			if (sender instanceof Player) {
+				Player p = (Player) sender;
+				List<String> lore = new ArrayList<String>();
+				lore.add("RAINBOW");
+				for (ItemStack item : p.getInventory().getArmorContents()) {
+					ItemMeta im = item.getItemMeta();
+					im.setLore(lore);
+					item.setItemMeta(im);
+					p.sendMessage("Added lore to " + item.getType().name().toLowerCase());
+				}
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -75,7 +98,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		}
 	}
 
-	public static boolean isWorthy(ItemMeta meta) {		
+	public static boolean isWorthy(ItemMeta meta) {
 		return meta.hasLore() ? meta.getLore().contains("RAINBOW") : false;
 	}
 
