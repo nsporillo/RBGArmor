@@ -28,16 +28,18 @@ import org.bukkit.scheduler.BukkitTask;
 public class RainbowGear extends JavaPlugin implements Listener {
 
 	private Map<UUID, Worker> workerz = new HashMap<UUID, Worker>();
-	public final static Color[] rb = new Color[64];
+	public static Color[] rb = new Color[64];
 
 	@Override
 	public void onEnable() {
+		saveDefaultConfig();
+		
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
 			@Override
 			public void run() {
-				final double f = (7.0 / 64.0);
+				final double f = (6.48 / 64.0);
 				for (int i = 0; i < 64; ++i) {
 					double r = sin(f * i + 0.0D) * 127.0D + 128.0D;
 					double g = sin(f * i + (2 * PI / 3)) * 127.0D + 128.0D;
