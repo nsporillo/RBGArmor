@@ -1,0 +1,15 @@
+# RainbowGear config
+# Lore is the lore required on leather armor for it to rainbowgear
+# Colors is how many possible colors armor can have (lower = more efficient)
+# RefreshRate is how many ticks armor is updated (higher = more efficient)
+# Cycle is (Colors * (RefreshRate / 20). This is how many seconds it takes to cycle once
+
+Lore: 'RAINBOW'
+
+Engine:
+  Colors: 64
+  RefreshRate: 5
+
+Lang:
+    Init: 'Rainbow armor activated, logout to deactivate!'
+    Gear: 'Added lore to %armorpiece' 
