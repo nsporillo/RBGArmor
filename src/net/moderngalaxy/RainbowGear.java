@@ -2,8 +2,6 @@ package net.moderngalaxy;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
-import static org.bukkit.ChatColor.GOLD;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,26 +26,34 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class RainbowGear extends JavaPlugin implements Listener {
 
-	private Map<UUID, Worker> workerz = new HashMap<UUID, Worker>();
-	public static Color[] rb = new Color[64];
+	private Map<UUID, Worker> workerz;
+	private static Config config;
+	protected static Color[] rb;
 
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
-		
+		workerz = new HashMap<UUID, Worker>();
+		config = new Config(this);
+		rb = new Color[config.getColors()];
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
 			@Override
 			public void run() {
-				final double f = (6.48 / 64.0);
-				for (int i = 0; i < 64; ++i) {
+				final int colors = config.getColors();
+				final double f = (6.48 / (double)colors);
+				for (int i = 0; i < colors; ++i) {
 					double r = sin(f * i + 0.0D) * 127.0D + 128.0D;
 					double g = sin(f * i + (2 * PI / 3)) * 127.0D + 128.0D;
 					double b = sin(f * i + (4 * PI / 3)) * 127.0D + 128.0D;
 					rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
 				}
-				getLogger().info("[Post-Startup] Generated rainbow colors");
+				if(config.doPrintInfo()) {
+					getLogger().info("------ RainbowGear Engine ------");
+					getLogger().info("- Using " + config.getColors() + " colors");
+					getLogger().info("- Armor updates " + 20/config.getRefreshRate() + " times per second");
+				}
+				
 			}
 		});
 	}
@@ -56,13 +63,14 @@ public class RainbowGear extends JavaPlugin implements Listener {
 		if (sender.isOp()) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
-				List<String> lore = new ArrayList<String>();
-				lore.add("RAINBOW");
+				List<String> lores = new ArrayList<String>();
+				lores.add(config.getLore());
 				for (ItemStack item : p.getInventory().getArmorContents()) {
 					ItemMeta im = item.getItemMeta();
-					im.setLore(lore);
+					im.setLore(lores);
 					item.setItemMeta(im);
-					p.sendMessage("Added lore to " + item.getType().name().toLowerCase());
+					String gear = config.getGear().replace("%armorpiece", item.getType().name().toLowerCase());
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', gear));
 				}
 			}
 		}
@@ -101,14 +109,15 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	public static boolean isWorthy(ItemMeta meta) {
-		return meta.hasLore() ? meta.getLore().contains("RAINBOW") : false;
+		return meta.hasLore() ? meta.getLore().contains(config.getLore()) : false;
 	}
 
 	private void initWorker(Player p) {
 		Worker rw = new Worker(p.getUniqueId());
-		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, 5, 5);
+		int rr = config.getRefreshRate();
+		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
 		rw.setUniqueId(id.getTaskId());
 		workerz.put(p.getUniqueId(), rw);
-		p.sendMessage(GOLD + "Rainbow armor activated, logout to deactivate!");
+		p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getInit()));
 	}
 }
