@@ -66,11 +66,13 @@ public class RainbowGear extends JavaPlugin implements Listener {
 				List<String> lores = new ArrayList<String>();
 				lores.add(config.getLore());
 				for (ItemStack item : p.getInventory().getArmorContents()) {
-					ItemMeta im = item.getItemMeta();
-					im.setLore(lores);
-					item.setItemMeta(im);
-					String gear = config.getGear().replace("%armorpiece", item.getType().name().toLowerCase());
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', gear));
+					if(item.hasItemMeta()) {
+						ItemMeta im = item.getItemMeta();
+						im.setLore(lores);
+						item.setItemMeta(im);
+						String gear = config.getGear().replace("%armorpiece", item.getType().name().toLowerCase());
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', gear));
+					}	
 				}
 			}
 		}
