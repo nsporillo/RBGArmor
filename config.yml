@@ -4,12 +4,11 @@
 # RefreshRate is how many ticks armor is updated (higher = more efficient)
 # Cycle is (Colors * (RefreshRate / 20). This is how many seconds it takes to cycle once
 
-Lore: 'RAINBOW'
-
+Lore: 'rainbow'
 Engine:
   Colors: 64
   RefreshRate: 5
-
+  PrintInfo: true
 Lang:
-    Init: 'Rainbow armor activated, logout to deactivate!'
-    Gear: 'Added lore to %armorpiece' 
+    Init: '&3Rainbow armor activated, logout to deactivate!'
+    Gear: '&3Added lore to %armorpiece' 
