@@ -1,4 +1,4 @@
-package net.moderngalaxy;
+package net.porillo;
 
 public class Config {
 

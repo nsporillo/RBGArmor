@@ -1,4 +1,4 @@
-package net.moderngalaxy;
+package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
