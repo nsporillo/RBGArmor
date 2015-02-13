@@ -4,6 +4,7 @@ RainbowGear is a plugin designed for Bukkit which allows players to equip specia
 
 ## Example
 ![alt text](http://nick.porillo.net/images/rg.gif "Example")
+Note: Gif is sped up, actual speed based on config
 
 ## Commands
 - /rg - Applies lore to your leather armor. Only available to OPs.
@@ -30,7 +31,11 @@ This means that one cycle takes `16` seconds.
 Colors | RefreshRate | Cycle | 
 --- | --- | ---
 64 | 5 | 16s 
+`24` | `7` | `9.45s`
+64 | 2 | 6.4s 
 24 | 5 | 6s
-24 | 7 | 9.45s 
+
+I strongly recommend you take the time to test out the engine settings until you find one you like. Please remember that a higher refresh rate will be lighter on your server load, and thus a 24 color to 7 refresh is probably the most efficient, while still decent looking. 
+ 
 
 
