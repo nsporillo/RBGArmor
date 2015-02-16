@@ -2,11 +2,15 @@ package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import net.porillo.workers.FadeWorker;
+import net.porillo.workers.Worker;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -28,7 +32,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
 	private Map<UUID, Worker> workerz;
 	private static Config config;
-	protected static Color[] rb;
+	public static Color[] rb;
 
 	@Override
 	public void onEnable() {
@@ -115,7 +119,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
 	}
 
 	private void initWorker(Player p) {
-		Worker rw = new Worker(p.getUniqueId());
+		Worker rw = new FadeWorker(p.getUniqueId());
 		int rr = config.getRefreshRate();
 		BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
 		rw.setUniqueId(id.getTaskId());
