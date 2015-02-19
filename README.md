@@ -10,8 +10,11 @@ RainbowGear is a plugin designed for Bukkit which allows players to equip specia
 - Note: Gif is sped up, actual speed based on config
 
 ## Commands
-- /rg - Applies lore to your leather armor. Only available to OPs.
-- Note: **I recommend you make a kit in essentials with the lore'd armor, so you can have kit cooldowns!**
+- /rg : Base command for RainbowGear
+- /rg help - Help command
+- /rg off - Turns off armor coloring
+- /rg set mode - Sets your armor coloring mode 
+- /rg modes - Lists the available coloring modes
 
 ## Color Engine: 
 
