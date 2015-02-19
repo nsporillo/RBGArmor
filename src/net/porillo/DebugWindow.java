@@ -29,6 +29,7 @@ public class DebugWindow {
 
     public void display() {
         final Objective obj = board.registerNewObjective("rgDebug", "debug");
+        final int rr = main.getOurConfig().getRefreshRate();
         id = Bukkit.getScheduler().runTaskTimer(main, new Runnable() {
 
             @Override
@@ -36,7 +37,7 @@ public class DebugWindow {
                 show(board, obj);
             }
 
-        }, 1, main.getOurConfig().getRefreshRate()).getTaskId();
+        }, rr, rr).getTaskId();
 
     }
 
