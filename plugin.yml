@@ -5,4 +5,4 @@ version: 1.1
 commands:   
     rainbowgear:      
       aliases: rg      
-      description: Applies lore to your leather armor 
+      description: Rainbow Gear base command
