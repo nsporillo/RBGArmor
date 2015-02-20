@@ -36,7 +36,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class RBGArmor extends JavaPlugin implements Listener {
 
-    private CommandHandler handler = new CommandHandler(this);
+    private CommandHandler handler;
     private Map<UUID, DebugWindow> debuggers;
     private Map<UUID, Worker> workerz;
     private static Config config;
@@ -44,6 +44,8 @@ public class RBGArmor extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        this.loadLang();
+        handler = new CommandHandler(this);
         workerz = new HashMap<UUID, Worker>();
         debuggers = new HashMap<UUID, DebugWindow>();
         config = new Config(this);
@@ -62,8 +64,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
             }
-        });
-        this.loadLang();
+        });       
     }
 
     @Override
@@ -112,7 +113,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
         BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
         rw.setUniqueId(id.getTaskId());
         workerz.put(p.getUniqueId(), rw);
-        send(p, Lang.ACTIVATE.format(rw.getType()));
+        send(p, Lang.ACTIVATE.replace("%mode", rw.getType()));
         send(p, Lang.DISABLERMD.toString());
     }
 
