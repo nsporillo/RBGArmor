@@ -55,10 +55,11 @@ public class RainbowGear extends JavaPlugin implements Listener {
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
                 if (config.shouldDebug()) {
-                    getLogger().info("------ RainbowGear Engine ------");
+                    getLogger().info("------ RainbowGear Debug ------");
                     getLogger().info("- Using " + config.getColors() + " colors");
                     int ups = 20 / config.getRefreshRate();
                     getLogger().info("- Armor updates " + ups + " times per second");
+
                 }
             }
         });
@@ -210,5 +211,9 @@ public class RainbowGear extends JavaPlugin implements Listener {
     
     public Config getOurConfig() {
         return config;
+    }
+    
+    public Map<UUID, Worker> getWorkers() {
+        return this.workerz;
     }
 }

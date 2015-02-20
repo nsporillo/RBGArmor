@@ -42,6 +42,9 @@ public class DebugWindow {
     }
 
     public void show(Scoreboard board, Objective obj) {
+        if(!main.getWorkers().containsKey(player.getUniqueId())) {
+            return;
+        }
         ItemStack[] armor = player.getInventory().getArmorContents();
         ItemStack is = null;
         for(int i = 0; i < armor.length; i++) {
