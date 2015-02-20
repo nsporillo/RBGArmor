@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import net.porillo.Lang;
+import net.porillo.Mode;
 import net.porillo.RBGArmor;
 import net.porillo.Utility;
 
@@ -44,5 +45,10 @@ public class SyncWorker extends Worker {
     @Override
     public String getType() {
         return Lang.SYNC_NAME.toString();
+    }
+    
+    @Override
+    public Mode getMode() {
+        return Mode.SYNC;
     }
 }

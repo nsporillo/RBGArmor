@@ -3,6 +3,7 @@ package net.porillo.workers;
 import java.util.UUID;
 
 import net.porillo.Lang;
+import net.porillo.Mode;
 import net.porillo.Utility;
 
 import org.bukkit.Bukkit;
@@ -60,5 +61,10 @@ public class HealthWorker extends Worker {
     @Override
     public String getType() {
         return Lang.HEALTH_NAME.toString();
+    }
+    
+    @Override
+    public Mode getMode() {
+        return Mode.HEALTH;
     }
 }

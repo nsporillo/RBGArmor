@@ -2,6 +2,8 @@ package net.porillo.workers;
 
 import java.util.UUID;
 
+import net.porillo.Mode;
+
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.PlayerInventory;
 
@@ -27,4 +29,5 @@ public abstract class Worker implements Runnable {
     }
 
     public abstract String getType();
+    public abstract Mode getMode();
 }

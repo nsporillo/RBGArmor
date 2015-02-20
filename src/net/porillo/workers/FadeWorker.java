@@ -3,6 +3,7 @@ package net.porillo.workers;
 import java.util.UUID;
 
 import net.porillo.Lang;
+import net.porillo.Mode;
 import net.porillo.RBGArmor;
 import net.porillo.Utility;
 
@@ -44,5 +45,10 @@ public class FadeWorker extends Worker {
     @Override
     public String getType() {
         return Lang.FADE_NAME.toString();
+    }
+    
+    @Override
+    public Mode getMode() {
+        return Mode.FADE;
     }
 }
