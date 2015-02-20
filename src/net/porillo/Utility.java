@@ -9,7 +9,6 @@ import net.porillo.workers.SyncWorker;
 import net.porillo.workers.Worker;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +18,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Utility {
 
     /**
-     * Gets a repeated string
+     * Gets a repeated {@code String}
      * 
      * @param s Symbol
      * @param num of symbols
@@ -102,4 +101,5 @@ public class Utility {
     public static void send(CommandSender sender, String str) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
+
 }

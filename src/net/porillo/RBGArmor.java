@@ -2,8 +2,14 @@ package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
-import static net.porillo.Utility.*;
+import static net.porillo.Utility.getWorker;
+import static net.porillo.Utility.send;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,6 +21,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -63,6 +70,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
                 }
             }
         });
+        this.loadLang();
     }
     
     @Override
@@ -124,6 +132,59 @@ public class RBGArmor extends JavaPlugin implements Listener {
         workerz.put(p.getUniqueId(), rw);
         send(p, "&aYour armor is activated, using &b" + rw.getType() + " &acoloring.");
         send(p, "&dUse /rg off or logout to stop armor coloring!");
+    }
+    
+    public void loadLang() {
+        File lang = new File(getDataFolder(), "lang.yml");
+        OutputStream out = null;
+        InputStream defLangStream = this.getResource("lang.yml");
+        if (!lang.exists()) {
+            try {
+                getDataFolder().mkdir();
+                lang.createNewFile();
+                if (defLangStream != null) {
+                    out = new FileOutputStream(lang);
+                    int read;
+                    byte[] bytes = new byte[1024];
+                    while ((read = defLangStream.read(bytes)) != -1) {
+                        out.write(bytes, 0, read);
+                    }
+                    YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defLangStream);
+                    Lang.setFile(defConfig);
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); 
+                getLogger().severe("[RGBArmor] Couldn't create language file.");
+                this.setEnabled(false); 
+            } finally {
+                if (defLangStream != null) {
+                    try {
+                        defLangStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (out != null) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
+        for (Lang item : Lang.values()) {
+            if (conf.getString(item.getPath()) == null) {
+                conf.set(item.getPath(), item.getDefault());
+            }
+        }
+        Lang.setFile(conf);
+        try {
+            conf.save(lang);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     public Config getOurConfig() {
