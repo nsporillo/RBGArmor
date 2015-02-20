@@ -10,7 +10,7 @@ public class Config {
         rg.saveDefaultConfig();
         colors = rg.getConfig().getInt("Engine.Colors", 64);
         refreshRate = rg.getConfig().getInt("Engine.RefreshRate", 5);
-        debug = rg.getConfig().getBoolean("Engine.PrintInfo", true);
+        debug = rg.getConfig().getBoolean("Engine.Debug", true);
     }
 
     public int getColors() {
