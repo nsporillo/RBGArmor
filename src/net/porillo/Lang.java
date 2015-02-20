@@ -23,8 +23,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * An enum for requesting strings from the language file.
  */
 public enum Lang {
-    TITLE("title-name", "RGBArmor");
-    
+    TITLE("title-name", "RGBArmor"),
+    RED("color-red", "Red"),
+    GREEN("color-red", "Green"),
+    BLUE("color-red", "Blue"),
+    DEBUG("debug-name", "debug");
 
     private String path;
     private String def;

@@ -62,18 +62,15 @@ public class DebugWindow {
             }
         }
         if(color != null) {
-            Score red = obj.getScore("Red: ");
+            Score red = obj.getScore(Lang.RED + ": ");
             red.setScore(color.getRed());
-            Score green = obj.getScore("Green: ");
+            Score green = obj.getScore(Lang.GREEN + ": ");
             green.setScore(color.getGreen());
-            Score blue = obj.getScore("Blue: ");
+            Score blue = obj.getScore(Lang.BLUE + ": ");
             blue.setScore(color.getBlue());
-        } else {
-            Score err = obj.getScore("No armor -> ");
-            err.setScore(0);
-        }
+        } 
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName("RG Debug");
+        obj.setDisplayName(Lang.TITLE + " " + Lang.DEBUG);
         player.setScoreboard(board);
     }
 
