@@ -4,12 +4,14 @@ import static net.porillo.Lang.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import net.porillo.workers.FadeWorker;
 import net.porillo.workers.HealthWorker;
 import net.porillo.workers.SyncWorker;
 import net.porillo.workers.Worker;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -19,6 +21,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Utility {
 
+    private static Logger logger = Bukkit.getLogger();
     /**
      * Gets a repeated {@code String}
      * 
@@ -104,5 +107,8 @@ public class Utility {
     public static void send(CommandSender sender, String str) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
-
+    
+    public static void debug(String message) {
+        logger.info("["+ Lang.TITLE + "][Debug] " + message);
+    }
 }
