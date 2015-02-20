@@ -2,8 +2,7 @@ package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
-import static net.porillo.Utility.getWorker;
-import static net.porillo.Utility.send;
+import static net.porillo.Utility.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,6 +62,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     double b = sin(f * i + (4 * PI / 3)) * 127.0D + 128.0D;
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
+                debug("RGBArmor enabled, using " + colors + " colors");
             }
         });       
     }
@@ -115,6 +115,9 @@ public class RBGArmor extends JavaPlugin implements Listener {
         workerz.put(p.getUniqueId(), rw);
         send(p, Lang.ACTIVATE.replace("%mode", rw.getType()));
         send(p, Lang.DISABLERMD.toString());
+        if(config.shouldDebug()) {
+            debug("New worker for " + p.getName() + ", type: " + rw.getMode().toString());
+        }
     }
 
     private void removeUUID(UUID uuid) {
@@ -122,6 +125,9 @@ public class RBGArmor extends JavaPlugin implements Listener {
             Worker w = workerz.get(uuid);
             Bukkit.getScheduler().cancelTask(w.getUniqueId());
             workerz.remove(uuid);
+            if(config.shouldDebug()) {
+                debug("Removed: " + uuid.toString());
+            }
         }
     }
 
