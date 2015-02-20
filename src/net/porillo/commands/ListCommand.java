@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
+import net.porillo.Mode;
 import net.porillo.RBGArmor;
 
 public class ListCommand extends BaseCommand {
@@ -26,8 +27,8 @@ public class ListCommand extends BaseCommand {
         }
         String dash = getSym("-", 8);
         send(s, "&2" + dash + " &9Available Modes&2 " + dash);
-        send(s, "- &bSync: &3All armor pieces are updated with same color");
-        send(s, "- &bFade: &3Every armor update, next color is used");
-        send(s, "- &bHealth: &3Armor color is based on health");
+        for(Mode m : Mode.values()) {
+            send(s, "-&b" + m.toString() + ": &3" + m.getDescription());
+        }
     }
 }

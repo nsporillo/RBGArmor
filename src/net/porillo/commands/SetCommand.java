@@ -8,6 +8,7 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.porillo.Mode;
 import net.porillo.RBGArmor;
 
 public class SetCommand extends BaseCommand {
@@ -34,24 +35,17 @@ public class SetCommand extends BaseCommand {
                 send(p, "&cError: Use '/rg off' first to change mode");
                 return;
             }
-            if (two.equalsIgnoreCase("fade")) {
-                if (p.hasPermission("rgbarmor.set.fade")) {
-                    toAdd += "RG|Fade";
+            for(Mode m : Mode.values()) {
+                if(m.name().equalsIgnoreCase(two)) {
+                    if(p.hasPermission("rgbarmor.set." + m.name().toLowerCase())) {
+                        toAdd = "RG|" + m.toString();
+                    } else {
+                        super.noPermission(s);
+                    }
                 }
-            } else if (two.equalsIgnoreCase("sync")) {
-                if (p.hasPermission("rgbarmor.set.sync")) {
-                    toAdd += "RG|Sync";
-                }
-            } else if (two.equalsIgnoreCase("health")) {
-                if (p.hasPermission("rgbarmor.set.health")) {
-                    toAdd += "RG|Health";
-                }
-            } else {
-                send(p, "&cThe mode &4'" + two + "'&c is not recognized.");
-                return;
             }
             if (toAdd == "") {
-                super.noPermission(s);
+                send(p, "&cThe mode &4'" + two + "'&c is not recognized.");
             } else {
                 setLore(p, toAdd);
                 send(p, "&eSuccess! &aSet coloring mode to &b" + two + "&a.");                       
