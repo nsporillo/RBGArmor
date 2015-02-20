@@ -3,6 +3,11 @@ package net.porillo;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.porillo.workers.FadeWorker;
+import net.porillo.workers.HealthWorker;
+import net.porillo.workers.SyncWorker;
+import net.porillo.workers.Worker;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.entity.Player;
@@ -68,6 +73,25 @@ public class Utility {
             }
         }
         return false;
+    }
+    
+    /**
+     * Gets the worker based on lore
+     * @param p Player
+     * @param lores list of lore
+     * @return a new worker instance based on the lore
+     */
+    public static Worker getWorker(Player p, List<String> lores) {
+        for (String lore : lores) {
+            if (lore.equals("RG|Fade")) {
+                return new FadeWorker(p.getUniqueId());
+            } else if (lore.equals("RG|Sync")) {
+                return new SyncWorker(p.getUniqueId());
+            } else if (lore.equals("RG|Health")) {
+                return new HealthWorker(p.getUniqueId());
+            }
+        }
+        return null;
     }
 
     public static void send(Player player, String str) {

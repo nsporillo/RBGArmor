@@ -5,13 +5,9 @@ import static java.lang.Math.sin;
 import static net.porillo.Utility.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import net.porillo.workers.FadeWorker;
-import net.porillo.workers.HealthWorker;
-import net.porillo.workers.SyncWorker;
 import net.porillo.workers.Worker;
 
 import org.bukkit.Bukkit;
@@ -200,19 +196,6 @@ public class RainbowGear extends JavaPlugin implements Listener {
                 }
             }
         }
-    }
-
-    private Worker getWorker(Player p, List<String> lores) {
-        for (String lore : lores) {
-            if (lore.equals("RG|Fade")) {
-                return new FadeWorker(p.getUniqueId());
-            } else if (lore.equals("RG|Sync")) {
-                return new SyncWorker(p.getUniqueId());
-            } else if (lore.equals("RG|Health")) {
-                return new HealthWorker(p.getUniqueId());
-            }
-        }
-        return null;
     }
 
     private void initWorker(Player p, Worker rw) {
