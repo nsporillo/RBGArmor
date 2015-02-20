@@ -30,9 +30,9 @@ public class SetCommand extends BaseCommand {
         if(s instanceof Player) {
             Player p = (Player)s;
             String toAdd = "";
-            String two = args.get(1);
+            String two = args.get(0);
             if (plugin.getWorkers().containsKey(p.getUniqueId())) {
-                send(p, "&cError: Use '/rg off' first to change mode");
+                send(p, "&cError: Use '/rgb off' first to change mode");
                 return;
             }
             for(Mode m : Mode.values()) {
