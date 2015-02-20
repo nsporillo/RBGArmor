@@ -6,7 +6,7 @@ import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 import net.porillo.Utility;
 
 public class SyncWorker extends Worker {
@@ -16,7 +16,7 @@ public class SyncWorker extends Worker {
 
     public SyncWorker(UUID uuid) {
         super(uuid);
-        this.t = (RainbowGear.rb.length - 1);
+        this.t = (RBGArmor.rb.length - 1);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SyncWorker extends Worker {
     private Color getNext() {
         if (c >= t)
             c = -1;
-        return RainbowGear.rb[++c];
+        return RBGArmor.rb[++c];
     }
 
     @Override

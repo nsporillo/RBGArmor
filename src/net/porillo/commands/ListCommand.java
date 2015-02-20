@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 
 public class ListCommand extends BaseCommand {
 
-    public ListCommand(RainbowGear plugin) {
+    public ListCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("list");
         super.addUsage("List available coloring modes");

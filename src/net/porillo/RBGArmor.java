@@ -27,7 +27,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-public class RainbowGear extends JavaPlugin implements Listener {
+public class RBGArmor extends JavaPlugin implements Listener {
 
     private CommandHandler handler = new CommandHandler(this);
     private Map<UUID, DebugWindow> debuggers;

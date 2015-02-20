@@ -10,20 +10,20 @@ import static org.bukkit.ChatColor.YELLOW;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 public abstract class BaseCommand implements Command {
 
-	protected RainbowGear plugin;
+	protected RBGArmor plugin;
 	protected String name;
 	protected String permission;
 	protected int required = 0;
 	protected List<String> usages = new ArrayList<String>();
 
-	public BaseCommand(final RainbowGear plugin) {
+	public BaseCommand(final RBGArmor plugin) {
 		this.plugin = plugin;
 	}
 

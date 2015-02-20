@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import net.porillo.DebugWindow;
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class DebugCommand extends BaseCommand {
 
-    public DebugCommand(RainbowGear plugin) {
+    public DebugCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("debug");
         super.addUsage("Toggles a armor debug scoreboard");

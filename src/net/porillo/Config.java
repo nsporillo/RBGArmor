@@ -6,7 +6,7 @@ public class Config {
     private int refreshRate;
     private int colors;
 
-    public Config(RainbowGear rg) {
+    public Config(RBGArmor rg) {
         rg.saveDefaultConfig();
         colors = rg.getConfig().getInt("Engine.Colors", 64);
         refreshRate = rg.getConfig().getInt("Engine.RefreshRate", 5);

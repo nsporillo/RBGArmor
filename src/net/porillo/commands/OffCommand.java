@@ -10,12 +10,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 import net.porillo.workers.Worker;
 
 public class OffCommand extends BaseCommand {
 
-    public OffCommand(RainbowGear plugin) {
+    public OffCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("off");
         super.addUsage("Disables your armor coloring");

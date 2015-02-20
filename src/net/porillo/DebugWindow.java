@@ -16,11 +16,11 @@ public class DebugWindow {
 
     private Player player;
     private ScoreboardManager manager;
-    private RainbowGear main;
+    private RBGArmor main;
     private int id;
     private final Scoreboard board;
 
-    public DebugWindow(RainbowGear main, Player player) {
+    public DebugWindow(RBGArmor main, Player player) {
         this.main = main;
         this.player = player;
         this.manager = Bukkit.getScoreboardManager();

@@ -2,7 +2,7 @@ package net.porillo.workers;
 
 import java.util.UUID;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 import net.porillo.Utility;
 
 import org.bukkit.Color;
@@ -16,7 +16,7 @@ public class FadeWorker extends Worker {
 
     public FadeWorker(UUID uuid) {
         super(uuid);
-        this.t = (RainbowGear.rb.length - 1);
+        this.t = (RBGArmor.rb.length - 1);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class FadeWorker extends Worker {
     private Color getNext() {
         if (c >= t)
             c = -1;
-        return RainbowGear.rb[++c];
+        return RBGArmor.rb[++c];
     }
 
     @Override

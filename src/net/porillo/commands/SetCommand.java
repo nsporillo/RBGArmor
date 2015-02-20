@@ -8,11 +8,11 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 
 public class SetCommand extends BaseCommand {
 
-    public SetCommand(RainbowGear plugin) {
+    public SetCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("set");
         super.setRequiredArgs(2);

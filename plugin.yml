@@ -1,8 +1,8 @@
-name: RainbowGear
+name: RBGArmor
 author: milkywayz 
-main: net.porillo.RainbowGear
+main: net.porillo.RBGArmor
 version: 1.0
 commands:   
-    rainbowgear:      
-      aliases: rg      
-      description: Rainbow Gear base command
+    rgbarmor:      
+      aliases: rgb      
+      description: RBGArmor base command

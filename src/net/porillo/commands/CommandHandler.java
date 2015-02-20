@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.porillo.RainbowGear;
+import net.porillo.RBGArmor;
 
 import org.bukkit.command.CommandSender;
 
@@ -15,7 +15,7 @@ public class CommandHandler {
 
 	private Map<String, Command> cmds = new HashMap<String, Command>();
 	
-	public CommandHandler(RainbowGear plugin) {
+	public CommandHandler(RBGArmor plugin) {
 	    cmds.put("debug", new DebugCommand(plugin));
 	    cmds.put("off", new OffCommand(plugin));
 	}
