@@ -2,10 +2,10 @@ package net.porillo.workers;
 
 import java.util.UUID;
 
-import net.porillo.Lang;
-import net.porillo.Mode;
 import net.porillo.RBGArmor;
-import net.porillo.Utility;
+import net.porillo.util.Lang;
+import net.porillo.util.Mode;
+import net.porillo.util.Utility;
 
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;

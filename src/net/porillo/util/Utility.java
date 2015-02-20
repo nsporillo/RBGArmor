@@ -1,6 +1,4 @@
-package net.porillo;
-
-import static net.porillo.Lang.*;
+package net.porillo.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +20,13 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Utility {
 
     private static Logger logger = Bukkit.getLogger();
+
     /**
      * Gets a repeated {@code String}
      * 
      * @param s Symbol
      * @param num of symbols
-     * @return String of symbols with length num
+     * @return {@code String} of symbols with length num
      */
     public static String getSym(String s, int num) {
         StringBuilder sb = new StringBuilder(num);
@@ -40,14 +39,15 @@ public class Utility {
     /**
      * Sets lore to a players armor
      * 
-     * @param p Player to set lore for armor
+     * @param player {@code ItemMeta} to set lore for armor
      * @param str Lore string
      */
-    public static void setLore(Player p, String str) {
+    public static void setLore(Player player, String str) {
         List<String> lores = new ArrayList<String>();
+        ItemStack[] armor = player.getInventory().getArmorContents();
         lores.add(str);
         ItemMeta meta;
-        for (ItemStack is : p.getInventory().getArmorContents()) {
+        for (ItemStack is : armor) {
             if (is != null && (meta = is.getItemMeta()) instanceof LeatherArmorMeta) {
                 if (meta.hasLore()) {
                     List<String> localAdd = new ArrayList<String>();
@@ -65,14 +65,15 @@ public class Utility {
     }
 
     /**
-     * 
-     * @param meta
+     * Checks if armor is worthy to color
+     * @param meta armors {@code ItemMeta}
      * @return true if item has correct lore
      */
     public static boolean isWorthy(ItemMeta meta) {
         if (meta.hasLore()) {
+            String str = Lang.TITLE_PREFIX.toString() + "|";
             for (String s : meta.getLore()) {
-                if (s.startsWith(TITLE_PREFIX.toString() + "|")) {
+                if (s.startsWith(str)) {
                     return true;
                 }
             }
@@ -81,34 +82,48 @@ public class Utility {
     }
 
     /**
-     * Gets the worker based on lore
+     * Gets the {@code Worker} based on lore
      * 
-     * @param p Player
-     * @param lores list of lore
-     * @return a new worker instance based on the lore
+     * @param player {@code Player}
+     * @param lores {@code List<String>} of item lore
+     * @return a new {@code worker} instance based on the lore
      */
-    public static Worker getWorker(Player p, List<String> lores) {
-        String pre = TITLE_PREFIX.toString();
+    public static Worker getWorker(Player player, List<String> lores) {
+        String pre = Lang.TITLE_PREFIX.toString();
         for (String lore : lores) {
             if (lore.equals(pre + "|" + Lang.FADE_NAME.cap())) {
-                return new FadeWorker(p.getUniqueId());
+                return new FadeWorker(player.getUniqueId());
             } else if (lore.equals(pre + "|" + Lang.SYNC_NAME.cap())) {
-                return new SyncWorker(p.getUniqueId());
+                return new SyncWorker(player.getUniqueId());
             } else if (lore.equals(pre + "|" + Lang.HEALTH_NAME.cap())) {
-                return new HealthWorker(p.getUniqueId());
+                return new HealthWorker(player.getUniqueId());
             }
         }
         return null;
     }
-    
+
+    /**
+     * Dispatches color formatted message to {@code Player}
+     * @param sender receiver
+     * @param str message
+     */
     public static void send(Player player, String str) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
 
+    /**
+     * Dispatches color formatted message to {@code CommandSender}
+     * @param sender receiver
+     * @param str message
+     */
     public static void send(CommandSender sender, String str) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
-    
+
+    /**
+     * Debug to console 
+     * @param message debug
+     */
     public static void debug(String message) {
         logger.info("[RGBArmor][Debug] " + message);
     }

@@ -6,10 +6,10 @@ import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import net.porillo.Lang;
-import net.porillo.Mode;
 import net.porillo.RBGArmor;
-import net.porillo.Utility;
+import net.porillo.util.Lang;
+import net.porillo.util.Mode;
+import net.porillo.util.Utility;
 
 public class SyncWorker extends Worker {
 

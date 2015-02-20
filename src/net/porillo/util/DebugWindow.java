@@ -1,4 +1,6 @@
-package net.porillo;
+package net.porillo.util;
+
+import net.porillo.RBGArmor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -27,6 +29,9 @@ public class DebugWindow {
         this.board = manager.getNewScoreboard();
     }
 
+    /**
+     * Generates scoreboard update task
+     */
     public void display() {
         final Objective obj = board.registerNewObjective("rgDebug", "debug");
         final int rr = main.getOurConfig().getRefreshRate();
@@ -41,12 +46,21 @@ public class DebugWindow {
 
     }
 
-    public void show(Scoreboard board, Objective obj) {
+    /**
+     * 
+     * @param board
+     * @param obj
+     */
+    private void show(Scoreboard board, Objective obj) {
+        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+        obj.setDisplayName(Lang.TITLE.toString() + " Debug");
+        player.setScoreboard(board);
         if (!main.getWorkers().containsKey(player.getUniqueId())) {
             return;
         }
         ItemStack[] armor = player.getInventory().getArmorContents();
         ItemStack is = null;
+        // find first piece of armor to debug
         for (int i = 0; i < armor.length; i++) {
             if (armor[i] != null) {
                 is = armor[i];
@@ -68,12 +82,13 @@ public class DebugWindow {
             green.setScore(color.getGreen());
             Score blue = obj.getScore("Blue: ");
             blue.setScore(color.getBlue());
-        }
-        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(Lang.TITLE.toString() + " Debug");
-        player.setScoreboard(board);
+        }        
     }
 
+    /**
+     * Clear scoreboard
+     * Clear update task
+     */
     public void close() {
         player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
         Bukkit.getScheduler().cancelTask(id);

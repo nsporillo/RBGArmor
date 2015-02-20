@@ -1,6 +1,6 @@
 package net.porillo.commands;
 
-import static net.porillo.Utility.*;
+import static net.porillo.util.Utility.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.porillo.Lang;
 import net.porillo.RBGArmor;
+import net.porillo.util.Lang;
 
 import org.bukkit.command.CommandSender;
 

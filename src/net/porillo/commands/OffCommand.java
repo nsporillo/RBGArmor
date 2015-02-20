@@ -1,6 +1,6 @@
 package net.porillo.commands;
 
-import static net.porillo.Utility.send;
+import static net.porillo.util.Utility.send;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import net.porillo.Lang;
 import net.porillo.RBGArmor;
+import net.porillo.util.Lang;
 import net.porillo.workers.Worker;
 
 public class OffCommand extends BaseCommand {

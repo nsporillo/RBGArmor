@@ -2,7 +2,7 @@ package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
-import static net.porillo.Utility.*;
+import static net.porillo.util.Utility.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import net.porillo.commands.CommandHandler;
+import net.porillo.util.Config;
+import net.porillo.util.DebugWindow;
+import net.porillo.util.Lang;
 import net.porillo.workers.Worker;
 
 import org.bukkit.Bukkit;

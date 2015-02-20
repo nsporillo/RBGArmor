@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import net.porillo.DebugWindow;
-import net.porillo.Lang;
 import net.porillo.RBGArmor;
+import net.porillo.util.DebugWindow;
+import net.porillo.util.Lang;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

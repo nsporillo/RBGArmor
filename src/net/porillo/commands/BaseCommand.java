@@ -9,9 +9,9 @@ import static org.bukkit.ChatColor.YELLOW;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.porillo.Lang;
 import net.porillo.RBGArmor;
-import net.porillo.Utility;
+import net.porillo.util.Lang;
+import net.porillo.util.Utility;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

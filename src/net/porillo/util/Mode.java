@@ -1,4 +1,5 @@
-package net.porillo;
+package net.porillo.util;
+
 
 public enum Mode {
 

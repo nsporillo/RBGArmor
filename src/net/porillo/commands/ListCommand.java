@@ -1,15 +1,15 @@
 package net.porillo.commands;
 
-import static net.porillo.Utility.getSym;
-import static net.porillo.Utility.send;
+import static net.porillo.util.Utility.getSym;
+import static net.porillo.util.Utility.send;
 
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import net.porillo.Lang;
-import net.porillo.Mode;
 import net.porillo.RBGArmor;
+import net.porillo.util.Lang;
+import net.porillo.util.Mode;
 
 public class ListCommand extends BaseCommand {
 
