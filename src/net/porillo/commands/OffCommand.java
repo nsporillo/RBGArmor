@@ -19,12 +19,17 @@ public class OffCommand extends BaseCommand {
         super(plugin);
         super.setName("off");
         super.addUsage("Disables your armor coloring");
+        super.setPermission("rgbarmor.off");
     }
 
     @Override
-    public void runCommand(CommandSender sender, List<String> args) {
-        if(sender instanceof Player) {
-            Player p = (Player)sender;
+    public void runCommand(CommandSender s, List<String> args) {
+        if (!this.checkPermission(s)) {
+            this.noPermission(s);
+            return;
+        }
+        if(s instanceof Player) {
+            Player p = (Player)s;
             final UUID uuid = p.getUniqueId();
             Map<UUID, Worker> workerz = plugin.getWorkers();
             if (workerz.containsKey(uuid)) {

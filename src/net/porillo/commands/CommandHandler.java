@@ -18,6 +18,8 @@ public class CommandHandler {
 	public CommandHandler(RBGArmor plugin) {
 	    cmds.put("debug", new DebugCommand(plugin));
 	    cmds.put("off", new OffCommand(plugin));
+	    cmds.put("set", new SetCommand(plugin));
+	    cmds.put("list", new ListCommand(plugin));
 	}
 
     public void runCommand(CommandSender s, String l, String[] a) {
@@ -36,7 +38,7 @@ public class CommandHandler {
 
 	public void showHelp(CommandSender s, String l) {
 	    String dash = getSym("-", 8);
-        send(s, "&2" + dash + "&9" + " RainbowGear " + "&2" + dash);		
+        send(s, "&2" + dash + "&9" + " RGBArmor " + "&2" + dash);		
 		for (Command cmd : this.cmds.values()) {
 			if (cmd.checkPermission(s)) {
 				cmd.showHelp(s, l);

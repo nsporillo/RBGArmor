@@ -55,7 +55,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
                 if (config.shouldDebug()) {
-                    getLogger().info("------ RainbowGear Debug ------");
+                    getLogger().info("------ RGBArmor Debug ------");
                     getLogger().info("- Using " + config.getColors() + " colors");
                     int ups = 20 / config.getRefreshRate();
                     getLogger().info("- Armor updates " + ups + " times per second");

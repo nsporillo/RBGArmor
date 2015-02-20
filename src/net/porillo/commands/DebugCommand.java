@@ -18,13 +18,17 @@ public class DebugCommand extends BaseCommand {
         super(plugin);
         super.setName("debug");
         super.addUsage("Toggles a armor debug scoreboard");
-        super.setPermission("rainbowgear.debug");
+        super.setPermission("rgbarmor.debug");
     }
 
     @Override
-    public void runCommand(CommandSender sender, List<String> args) {
-        if(sender instanceof Player) {
-           Player p = (Player)sender;
+    public void runCommand(CommandSender s, List<String> args) {
+        if (!this.checkPermission(s)) {
+            this.noPermission(s);
+            return;
+        }
+        if(s instanceof Player) {
+           Player p = (Player)s;
            UUID uuid = p.getUniqueId();
            Map<UUID, DebugWindow> debuggers = plugin.getDebuggers();
            if(debuggers.containsKey(uuid)) {

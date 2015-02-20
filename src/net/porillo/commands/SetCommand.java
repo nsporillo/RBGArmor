@@ -15,14 +15,19 @@ public class SetCommand extends BaseCommand {
     public SetCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("set");
-        super.setRequiredArgs(2);
+        super.setRequiredArgs(1);
         super.addUsage("Sets your equiped armor's mode", "mode");
+        super.setPermission("rgbarmor.set");
     }
 
     @Override
-    public void runCommand(CommandSender sender, List<String> args) {
-        if(sender instanceof Player) {
-            Player p = (Player)sender;
+    public void runCommand(CommandSender s, List<String> args) {
+        if (!this.checkPermission(s)) {
+            this.noPermission(s);
+            return;
+        }
+        if(s instanceof Player) {
+            Player p = (Player)s;
             String toAdd = "";
             String two = args.get(1);
             if (plugin.getWorkers().containsKey(p.getUniqueId())) {
@@ -30,15 +35,15 @@ public class SetCommand extends BaseCommand {
                 return;
             }
             if (two.equalsIgnoreCase("fade")) {
-                if (sender.hasPermission("rainbowgear.set.fade")) {
+                if (p.hasPermission("rgbarmor.set.fade")) {
                     toAdd += "RG|Fade";
                 }
             } else if (two.equalsIgnoreCase("sync")) {
-                if (sender.hasPermission("rainbowgear.set.sync")) {
+                if (p.hasPermission("rgbarmor.set.sync")) {
                     toAdd += "RG|Sync";
                 }
             } else if (two.equalsIgnoreCase("health")) {
-                if (sender.hasPermission("rainbowgear.set.health")) {
+                if (p.hasPermission("rgbarmor.set.health")) {
                     toAdd += "RG|Health";
                 }
             } else {
@@ -46,7 +51,7 @@ public class SetCommand extends BaseCommand {
                 return;
             }
             if (toAdd == "") {
-                send(p, "&cYou dont have permission to use that command.");
+                super.noPermission(s);
             } else {
                 setLore(p, toAdd);
                 send(p, "&eSuccess! &aSet coloring mode to &b" + two + "&a.");                       
