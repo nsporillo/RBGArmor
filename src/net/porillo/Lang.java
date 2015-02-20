@@ -31,7 +31,9 @@ public enum Lang {
     DEBUG("debug-name", "debug"),
     SYNC("sync-desc", "All armor pieces are updated with same color"), 
     FADE("fade-desc", "Each armor piece gets the next color update"),
-    HEALTH("health-desc", "Armor color is based on health");
+    HEALTH("health-desc", "Armor color is based on health"),
+    ACTIVATE("activate-msg", "&aYour armor is activated, using &b%mode &acoloring."),
+    DISABLERMD("disb-reminder", "&dUse /rgb off or logout to stop armor coloring!");
     
 
     private String path;
@@ -56,6 +58,10 @@ public enum Lang {
      */
     public static void setFile(YamlConfiguration config) {
         LANG = config;
+    }
+    
+    public String format(Object... args) {
+        return String.format(toString(), args);
     }
 
     @Override

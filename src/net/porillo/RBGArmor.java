@@ -38,7 +38,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
 
     private CommandHandler handler = new CommandHandler(this);
     private Map<UUID, DebugWindow> debuggers;
-    private Map<UUID, Worker> workerz; 
+    private Map<UUID, Worker> workerz;
     private static Config config;
     public static Color[] rb;
 
@@ -61,18 +61,11 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     double b = sin(f * i + (4 * PI / 3)) * 127.0D + 128.0D;
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
-                if (config.shouldDebug()) {
-                    getLogger().info("------ RGBArmor Debug ------");
-                    getLogger().info("- Using " + config.getColors() + " colors");
-                    int ups = 20 / config.getRefreshRate();
-                    getLogger().info("- Armor updates " + ups + " times per second");
-
-                }
             }
         });
         this.loadLang();
     }
-    
+
     @Override
     public void onDisable() {
         workerz.clear();
@@ -87,23 +80,12 @@ public class RBGArmor extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        final UUID uuid = e.getPlayer().getUniqueId();
-        if (workerz.containsKey(uuid)) {
-            Worker w = workerz.get(uuid);
-            Bukkit.getScheduler().cancelTask(w.getUniqueId());
-            workerz.remove(uuid);
-        }
+        this.removeUUID(e.getPlayer().getUniqueId());
     }
-    
+
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
-        final UUID uuid = e.getEntity().getUniqueId();
-        if (workerz.containsKey(uuid)) {
-            Worker w = workerz.get(uuid);
-            Bukkit.getScheduler().cancelTask(w.getUniqueId());
-            workerz.remove(uuid);
-            send(e.getEntity(), "death");
-        }
+        this.removeUUID(e.getEntity().getUniqueId());
     }
 
     @EventHandler
@@ -130,10 +112,18 @@ public class RBGArmor extends JavaPlugin implements Listener {
         BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
         rw.setUniqueId(id.getTaskId());
         workerz.put(p.getUniqueId(), rw);
-        send(p, "&aYour armor is activated, using &b" + rw.getType() + " &acoloring.");
-        send(p, "&dUse /rg off or logout to stop armor coloring!");
+        send(p, Lang.ACTIVATE.format(rw.getType()));
+        send(p, Lang.DISABLERMD.toString());
     }
-    
+
+    private void removeUUID(UUID uuid) {
+        if (workerz.containsKey(uuid)) {
+            Worker w = workerz.get(uuid);
+            Bukkit.getScheduler().cancelTask(w.getUniqueId());
+            workerz.remove(uuid);
+        }
+    }
+
     public void loadLang() {
         File lang = new File(getDataFolder(), "lang.yml");
         OutputStream out = null;
@@ -149,13 +139,14 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     while ((read = defLangStream.read(bytes)) != -1) {
                         out.write(bytes, 0, read);
                     }
-                    YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defLangStream);
+                    YamlConfiguration defConfig = YamlConfiguration
+                            .loadConfiguration(defLangStream);
                     Lang.setFile(defConfig);
                 }
             } catch (IOException e) {
-                e.printStackTrace(); 
+                e.printStackTrace();
                 getLogger().severe("[RGBArmor] Couldn't create language file.");
-                this.setEnabled(false); 
+                this.setEnabled(false);
             } finally {
                 if (defLangStream != null) {
                     try {
@@ -186,15 +177,15 @@ public class RBGArmor extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
     }
-    
+
     public Config getOurConfig() {
         return config;
     }
-    
+
     public Map<UUID, Worker> getWorkers() {
         return this.workerz;
     }
-    
+
     public Map<UUID, DebugWindow> getDebuggers() {
         return this.debuggers;
     }
