@@ -1,6 +1,9 @@
-# RBGArmor
+# RBGArmor   [![Build Status](https://travis-ci.org/nsporillo/RBGArmor.svg?branch=master)](https://travis-ci.org/nsporillo/RBGArmor)
 
-RBGArmor is a plugin designed for Bukkit which allows players to equip specialized armor (lore based) which constantly shifts color in a rainbow pattern. Color is synced for all four armor pieces, but not all are required to be worn! 
+RBGArmor is a dynamic armor coloring shifting plugin. Armor with RGB lore shifts colors based on a predefined coloring scheme called a [Mode](https://github.com/nsporillo/RBGArmor/blob/master/src/net/porillo/util/Mode.java). 
+* RGBArmor is the only plugin that features an always smooth rainbow loop!
+* RGBArmor lets you config the update speed and # of colors that can be displayed
+* RGBArmor has language support! 
 
 ### Notice
 - RBGArmor is a premium plugin on the [SpigotMC](http://www.spigotmc.org/resources/) , if you use this plugin and your server makes money, please support development and purchase the resource. If for some reason you cannot pay and would like a copy, I can make exceptions - just contact me.  
@@ -10,11 +13,11 @@ RBGArmor is a plugin designed for Bukkit which allows players to equip specializ
 - Note: Gif is sped up, actual speed based on config
 
 ## Commands
-- /rg : Base command for RBGArmor
-- /rg help - Help command
-- /rg off - Turns off armor coloring
-- /rg set mode - Sets your armor coloring mode 
-- /rg modes - Lists the available coloring modes
+- /rgb : Base command for RBGArmor, displays help
+- /rgb off - Turns off armor coloring
+- /rgb set mode - Sets your armor coloring mode 
+- /rgb list - Lists the available coloring modes
+- /rgb debug - Displays dynamic debug scoreboard for armor color
 
 ## Color Engine: 
 
