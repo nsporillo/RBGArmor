@@ -52,7 +52,7 @@ public class Utility {
                 if (meta.hasLore()) {
                     List<String> localAdd = new ArrayList<String>();
                     for (String l : meta.getLore()) {
-                        if (!l.startsWith("RG|")) {
+                        if (!l.startsWith(Lang.TITLE_PREFIX.toString() + "|")) {
                             localAdd.add(l);
                         }
                     }
@@ -88,18 +88,19 @@ public class Utility {
      * @return a new worker instance based on the lore
      */
     public static Worker getWorker(Player p, List<String> lores) {
+        String pre = TITLE_PREFIX.toString();
         for (String lore : lores) {
-            if (lore.equals(TITLE_PREFIX.toString() + "|Fade")) {
+            if (lore.equals(pre + "|" + Lang.FADE_NAME.cap())) {
                 return new FadeWorker(p.getUniqueId());
-            } else if (lore.equals(TITLE_PREFIX.toString() + "|Sync")) {
+            } else if (lore.equals(pre + "|" + Lang.SYNC_NAME.cap())) {
                 return new SyncWorker(p.getUniqueId());
-            } else if (lore.equals(TITLE_PREFIX.toString() + "|Health")) {
+            } else if (lore.equals(pre + "|" + Lang.HEALTH_NAME.cap())) {
                 return new HealthWorker(p.getUniqueId());
             }
         }
         return null;
     }
-
+    
     public static void send(Player player, String str) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
@@ -109,6 +110,6 @@ public class Utility {
     }
     
     public static void debug(String message) {
-        logger.info("["+ Lang.TITLE + "][Debug] " + message);
+        logger.info("[RGBArmor][Debug] " + message);
     }
 }

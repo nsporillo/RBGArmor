@@ -116,7 +116,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
         send(p, Lang.ACTIVATE.replace("%mode", rw.getType()));
         send(p, Lang.DISABLERMD.toString());
         if(config.shouldDebug()) {
-            debug("New worker for " + p.getName() + ", type: " + rw.getMode().toString());
+            debug("New worker for " + p.getName() + ", type: " + rw.getMode().getName());
         }
     }
 

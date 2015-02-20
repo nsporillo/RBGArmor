@@ -81,6 +81,10 @@ public enum Lang {
     public String replace(String string, String two) {
         return toString().replace(string, two);
     }
+    
+    public  String cap() {
+        return Character.toUpperCase(toString().charAt(0)) + toString().substring(1).toLowerCase();
+    }
 
     /**
      * Get the default value of the path.

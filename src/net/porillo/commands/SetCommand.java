@@ -37,9 +37,9 @@ public class SetCommand extends BaseCommand {
                 return;
             }
             for (Mode m : Mode.values()) {
-                if (m.name().equalsIgnoreCase(two)) {
-                    if (p.hasPermission("rgbarmor.set." + m.name().toLowerCase())) {
-                        toAdd = Lang.TITLE_PREFIX.toString() + "|" + m.toString();
+                if (m.getName().equalsIgnoreCase(two)) {
+                    if (p.hasPermission("rgbarmor.set." + m.getName().toLowerCase())) {
+                        toAdd = Lang.TITLE_PREFIX.toString() + "|" + m.getName();
                     } else {
                         super.noPermission(s);
                     }

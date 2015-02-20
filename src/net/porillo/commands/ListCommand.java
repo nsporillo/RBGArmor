@@ -30,7 +30,7 @@ public class ListCommand extends BaseCommand {
         send(s, Lang.LIST_HEADER.toString().replace("%dash", dash));
         for (Mode m : Mode.values()) {
             String send = Lang.LIST_OUTPUT.toString();
-            send = send.replace("%mode", m.toString());
+            send = send.replace("%mode", m.getName());
             send = send.replace("%description", m.getDescription());
             send(s, send);
         }
