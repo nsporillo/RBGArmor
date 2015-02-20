@@ -2,9 +2,9 @@ package net.porillo;
 
 public enum Mode {
   
-    SYNC("All armor pieces are updated with same color"),
-    FADE("Each armor piece gets the next color update"),
-    HEALTH("Armor color is based on health");
+    SYNC(Lang.SYNC.toString()),
+    FADE(Lang.FADE.toString()),
+    HEALTH(Lang.HEALTH.toString());
     
     private String desc;
     

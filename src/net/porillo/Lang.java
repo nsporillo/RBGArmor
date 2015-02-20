@@ -27,7 +27,10 @@ public enum Lang {
     RED("color-red", "Red"),
     GREEN("color-red", "Green"),
     BLUE("color-red", "Blue"),
-    DEBUG("debug-name", "debug");
+    DEBUG("debug-name", "debug"),
+    SYNC("sync-mode", "All armor pieces are updated with same color"), 
+    FADE("fade-mode", "Each armor piece gets the next color update"),
+    HEALTH("health-mode", "Armor color is based on health");
 
     private String path;
     private String def;
@@ -56,7 +59,8 @@ public enum Lang {
     @Override
     public String toString() {
         if (this == TITLE)
-            return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def)) + " ";
+            return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def))
+                    + " ";
         return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def));
     }
 
