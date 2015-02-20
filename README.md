@@ -1,16 +1,16 @@
-# RainbowGear
+# RBGArmor
 
-RainbowGear is a plugin designed for Bukkit which allows players to equip specialized armor (lore based) which constantly shifts color in a rainbow pattern. Color is synced for all four armor pieces, but not all are required to be worn! 
+RBGArmor is a plugin designed for Bukkit which allows players to equip specialized armor (lore based) which constantly shifts color in a rainbow pattern. Color is synced for all four armor pieces, but not all are required to be worn! 
 
 ### Notice
-- RainbowGear is a premium plugin on the [SpigotMC](http://www.spigotmc.org/resources/) , if you use this plugin and your server makes money, please support development and purchase the resource. If for some reason you cannot pay and would like a copy, I can make exceptions - just contact me.  
+- RBGArmor is a premium plugin on the [SpigotMC](http://www.spigotmc.org/resources/) , if you use this plugin and your server makes money, please support development and purchase the resource. If for some reason you cannot pay and would like a copy, I can make exceptions - just contact me.  
 
 ## Example
 ![alt text](http://nick.porillo.net/images/rg.gif "Example")
 - Note: Gif is sped up, actual speed based on config
 
 ## Commands
-- /rg : Base command for RainbowGear
+- /rg : Base command for RBGArmor
 - /rg help - Help command
 - /rg off - Turns off armor coloring
 - /rg set mode - Sets your armor coloring mode 
