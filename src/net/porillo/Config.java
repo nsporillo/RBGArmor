@@ -8,9 +8,9 @@ public class Config {
 
     public Config(RBGArmor rg) {
         rg.saveDefaultConfig();
-        colors = rg.getConfig().getInt("Engine.Colors", 64);
-        refreshRate = rg.getConfig().getInt("Engine.RefreshRate", 5);
-        debug = rg.getConfig().getBoolean("Engine.Debug", true);
+        colors = rg.getConfig().getInt("Core.Colors", 64);
+        refreshRate = rg.getConfig().getInt("Core.RefreshRate", 5);
+        debug = rg.getConfig().getBoolean("Core.Debug", true);
     }
 
     public int getColors() {

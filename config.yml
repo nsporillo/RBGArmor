@@ -1,8 +1,7 @@
 # RBGArmor config
 # Colors is how many possible colors armor can have (lower = more efficient)
 # RefreshRate is how many ticks armor is updated (higher = more efficient)
-# Cycle is (Colors * (RefreshRate / 20). This is how many seconds it takes to cycle once
-Engine:
+Core:
   Colors: 64
   RefreshRate: 5
   Debug: true

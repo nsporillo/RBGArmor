@@ -32,7 +32,7 @@ public enum Lang {
     FADE_DESC("fade-desc", "Each armor piece gets the next color update"),
     HEALTH_DESC("health-desc", "Armor color is based on health"),
     ACTIVATE("activate-msg", "&aYour armor is activated, using &b%mode &acoloring."),
-    DISABLERMD("disb-reminder", "&dUse /rgb off or logout to stop armor coloring!"),
+    DISABLERMD("disable-reminder", "&dUse /rgb off or logout to stop armor coloring!"),
     NOPERMS("no-permission", "&cYou do not have permission to use that command!"),
     DEBUG_USAGE("debug-usage", "Toggles a armor debug scoreboard"),
     LIST_USAGE("list-usage", "List available coloring modes"),
