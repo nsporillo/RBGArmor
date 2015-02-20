@@ -2,9 +2,9 @@ package net.porillo;
 
 public enum Mode {
   
-    SYNC(Lang.SYNC.toString()),
-    FADE(Lang.FADE.toString()),
-    HEALTH(Lang.HEALTH.toString());
+    SYNC(Lang.SYNC_DESC.toString()),
+    FADE(Lang.FADE_DESC.toString()),
+    HEALTH(Lang.HEALTH_DESC.toString());
     
     private String desc;
     
