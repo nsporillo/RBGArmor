@@ -1,5 +1,7 @@
 package net.porillo;
 
+import static net.porillo.Lang.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +69,7 @@ public class Utility {
     public static boolean isWorthy(ItemMeta meta) {
         if (meta.hasLore()) {
             for(String s : meta.getLore()) {
-                if(s.startsWith("RG|")) {
+                if(s.startsWith(TITLE_PREFIX.toString() + "|")) {
                     return true;
                 }
             }
@@ -77,17 +79,18 @@ public class Utility {
     
     /**
      * Gets the worker based on lore
+     * 
      * @param p Player
      * @param lores list of lore
      * @return a new worker instance based on the lore
      */
     public static Worker getWorker(Player p, List<String> lores) {
         for (String lore : lores) {
-            if (lore.equals("RG|Fade")) {
+            if (lore.equals(TITLE_PREFIX.toString() + "|Fade")) {
                 return new FadeWorker(p.getUniqueId());
-            } else if (lore.equals("RG|Sync")) {
+            } else if (lore.equals(TITLE_PREFIX.toString() + "|Sync")) {
                 return new SyncWorker(p.getUniqueId());
-            } else if (lore.equals("RG|Health")) {
+            } else if (lore.equals(TITLE_PREFIX.toString() + "|Health")) {
                 return new HealthWorker(p.getUniqueId());
             }
         }

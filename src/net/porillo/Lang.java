@@ -23,14 +23,16 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * An enum for requesting strings from the language file.
  */
 public enum Lang {
+    TITLE_PREFIX("title-prefix", "RGB"),
     TITLE("title-name", "RGBArmor"),
     RED("color-red", "Red"),
     GREEN("color-red", "Green"),
     BLUE("color-red", "Blue"),
     DEBUG("debug-name", "debug"),
-    SYNC("sync-mode", "All armor pieces are updated with same color"), 
-    FADE("fade-mode", "Each armor piece gets the next color update"),
-    HEALTH("health-mode", "Armor color is based on health");
+    SYNC("sync-desc", "All armor pieces are updated with same color"), 
+    FADE("fade-desc", "Each armor piece gets the next color update"),
+    HEALTH("health-desc", "Armor color is based on health");
+    
 
     private String path;
     private String def;
