@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
+import net.porillo.Lang;
 import net.porillo.Mode;
 import net.porillo.RBGArmor;
 
@@ -15,7 +16,7 @@ public class ListCommand extends BaseCommand {
     public ListCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("list");
-        super.addUsage("List available coloring modes");
+        super.addUsage(Lang.LIST_USAGE.toString());
         super.setPermission("rgbarmor.list");
     }
 
@@ -26,9 +27,9 @@ public class ListCommand extends BaseCommand {
             return;
         }
         String dash = getSym("-", 8);
-        send(s, "&2" + dash + " &9Available Modes&2 " + dash);
+        send(s, Lang.LIST_HEADER.format(dash));
         for(Mode m : Mode.values()) {
-            send(s, "-&b" + m.toString() + ": &3" + m.getDescription());
+            send(s, Lang.LIST_OUTPUT.format(m.toString(), m.getDescription()));
         }
     }
 }

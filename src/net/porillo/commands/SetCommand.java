@@ -8,6 +8,7 @@ import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.porillo.Lang;
 import net.porillo.Mode;
 import net.porillo.RBGArmor;
 
@@ -17,7 +18,7 @@ public class SetCommand extends BaseCommand {
         super(plugin);
         super.setName("set");
         super.setRequiredArgs(1);
-        super.addUsage("Sets your equiped armor's mode", "mode");
+        super.addUsage(Lang.SET_USAGE.toString(), "mode");
         super.setPermission("rgbarmor.set");
     }
 
@@ -32,23 +33,23 @@ public class SetCommand extends BaseCommand {
             String toAdd = "";
             String two = args.get(0);
             if (plugin.getWorkers().containsKey(p.getUniqueId())) {
-                send(p, "&cError: Use '/rgb off' first to change mode");
+                send(p, Lang.SET_ERROR.toString());
                 return;
             }
             for(Mode m : Mode.values()) {
                 if(m.name().equalsIgnoreCase(two)) {
                     if(p.hasPermission("rgbarmor.set." + m.name().toLowerCase())) {
-                        toAdd = "RG|" + m.toString();
+                        toAdd = Lang.TITLE_PREFIX.toString() + "|" + m.toString();
                     } else {
                         super.noPermission(s);
                     }
                 }
             }
             if (toAdd == "") {
-                send(p, "&cThe mode &4'" + two + "'&c is not recognized.");
+                send(p, Lang.SET_FAILURE.format(two));
             } else {
                 setLore(p, toAdd);
-                send(p, "&eSuccess! &aSet coloring mode to &b" + two + "&a.");                       
+                send(p, Lang.SET_SUCCESS.format(two));                       
             }
         }
     }  

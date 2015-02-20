@@ -1,12 +1,14 @@
 package net.porillo.commands;
 
 import static net.porillo.Utility.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.porillo.Lang;
 import net.porillo.RBGArmor;
 
 import org.bukkit.command.CommandSender;
@@ -38,7 +40,7 @@ public class CommandHandler {
 
 	public void showHelp(CommandSender s, String l) {
 	    String dash = getSym("-", 8);
-        send(s, "&2" + dash + "&9" + " RGBArmor " + "&2" + dash);		
+        send(s, "&2" + dash + "&9 " + Lang.TITLE.toString() + " &2" + dash);		
 		for (Command cmd : this.cmds.values()) {
 			if (cmd.checkPermission(s)) {
 				cmd.showHelp(s, l);

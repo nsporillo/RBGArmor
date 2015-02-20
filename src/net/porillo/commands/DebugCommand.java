@@ -1,12 +1,11 @@
 package net.porillo.commands;
 
-import static net.porillo.Utility.send;
-
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import net.porillo.DebugWindow;
+import net.porillo.Lang;
 import net.porillo.RBGArmor;
 
 import org.bukkit.command.CommandSender;
@@ -17,7 +16,7 @@ public class DebugCommand extends BaseCommand {
     public DebugCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("debug");
-        super.addUsage("Toggles a armor debug scoreboard");
+        super.addUsage(Lang.DEBUG_USAGE.toString());
         super.setPermission("rgbarmor.debug");
     }
 
@@ -35,12 +34,10 @@ public class DebugCommand extends BaseCommand {
                DebugWindow dw = debuggers.get(uuid);
                dw.close();
                debuggers.remove(uuid);
-               send(p, "&eSuccess! Removed debug window");
            } else {
                DebugWindow dw = new DebugWindow(plugin, p);
                debuggers.put(uuid, dw);                          
                dw.display();
-               send(p, "&eSuccess! Enabled debug window");
            }
         }     
     }

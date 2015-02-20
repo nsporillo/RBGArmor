@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.porillo.Lang;
 import net.porillo.RBGArmor;
 import net.porillo.workers.Worker;
 
@@ -18,7 +19,7 @@ public class OffCommand extends BaseCommand {
     public OffCommand(RBGArmor plugin) {
         super(plugin);
         super.setName("off");
-        super.addUsage("Disables your armor coloring");
+        super.addUsage(Lang.OFF_USAGE.toString());
         super.setPermission("rgbarmor.off");
     }
 
@@ -36,9 +37,9 @@ public class OffCommand extends BaseCommand {
                 Worker w = workerz.get(uuid);
                 Bukkit.getScheduler().cancelTask(w.getUniqueId());
                 workerz.remove(uuid);
-                send(p, "&eSuccess. Deactivated your armor.");
+                send(p, Lang.OFF_SUCCESS.toString());
             } else {
-                send(p, "&cError: Your armor is not updating, &ecant turn off.");
+                send(p, Lang.OFF_FAILURE.toString());
             }
         }
     }

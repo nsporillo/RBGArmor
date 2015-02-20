@@ -10,7 +10,9 @@ import static org.bukkit.ChatColor.YELLOW;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.porillo.Lang;
 import net.porillo.RBGArmor;
+import net.porillo.Utility;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -55,7 +57,7 @@ public abstract class BaseCommand implements Command {
 	}
 
 	protected void noPermission(final CommandSender sender) {
-		sender.sendMessage(RED + "You do not have permission to use that command!");
+	    Utility.send(sender, Lang.NOPERMS.toString());
 	}
 
 	protected final void setName(final String name) {

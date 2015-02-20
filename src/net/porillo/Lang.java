@@ -25,15 +25,27 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public enum Lang {
     TITLE_PREFIX("title-prefix", "RGB"),
     TITLE("title-name", "RGBArmor"),
-    RED("color-red", "Red"),
-    GREEN("color-red", "Green"),
-    BLUE("color-red", "Blue"),
-    DEBUG("debug-name", "debug"),
+    RED("color-red", "&cRed"),
+    GREEN("color-red", "&2Green"),
+    BLUE("color-red", "&9Blue"),
     SYNC("sync-desc", "All armor pieces are updated with same color"), 
     FADE("fade-desc", "Each armor piece gets the next color update"),
     HEALTH("health-desc", "Armor color is based on health"),
     ACTIVATE("activate-msg", "&aYour armor is activated, using &b%mode &acoloring."),
-    DISABLERMD("disb-reminder", "&dUse /rgb off or logout to stop armor coloring!");
+    DISABLERMD("disb-reminder", "&dUse /rgb off or logout to stop armor coloring!"),
+    NOPERMS("no-permission", "&cYou do not have permission to use that command!"),
+    DEBUG("debug-name", "debug"),
+    DEBUG_USAGE("debug-usage", "Toggles a armor debug scoreboard"), 
+    LIST_USAGE("list-usage", "List available coloring modes"),
+    LIST_HEADER("list-header","&2%dash &9Available Modes&2 %dash"),
+    LIST_OUTPUT("list-output", "- &b%mode: &3%description"),
+    OFF_USAGE("off-usage", "Disables your armor coloring"),
+    OFF_SUCCESS("off-success", "&eSuccess. Deactivated your armor."),
+    OFF_FAILURE("off-failure", "&cError: Your armor is not updating, &ecant turn off."),
+    SET_USAGE("set-usage","Sets your equiped armor's mode"),
+    SET_ERROR("set-error","&cError: Use '/rgb off' first to change mode"),
+    SET_SUCCESS("set-success","&eSuccess! &aSet coloring mode to &b%mode&a."),
+    SET_FAILURE("set-failure","&cThe mode &4'%mode'&c is not recognized.");
     
 
     private String path;
