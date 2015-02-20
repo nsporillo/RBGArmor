@@ -10,6 +10,7 @@ import net.porillo.workers.Worker;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -96,5 +97,9 @@ public class Utility {
 
     public static void send(Player player, String str) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
-    } 
+    }
+    
+    public static void send(CommandSender sender, String str) {
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
+    }
 }
