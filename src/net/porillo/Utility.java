@@ -61,8 +61,11 @@ public class Utility {
      */
     public static boolean isWorthy(ItemMeta meta) {
         if (meta.hasLore()) {
-            return meta.getLore().contains("RG|Fade") || meta.getLore().contains("RG|Sync")
-                    || meta.getLore().contains("RG|Health");
+            for(String s : meta.getLore()) {
+                if(s.startsWith("RG|")) {
+                    return true;
+                }
+            }
         }
         return false;
     }
