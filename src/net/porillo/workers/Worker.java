@@ -25,4 +25,6 @@ public abstract class Worker implements Runnable {
     public PlayerInventory getInventory() {
         return inv;
     }
+    
+    public abstract String getType();
 }

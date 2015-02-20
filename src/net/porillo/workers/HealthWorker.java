@@ -55,4 +55,9 @@ public class HealthWorker extends Worker {
         }
         return colors;
     }
+    
+    @Override
+    public String getType() {
+        return "health";
+    }
 }

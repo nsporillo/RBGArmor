@@ -220,13 +220,7 @@ public class RainbowGear extends JavaPlugin implements Listener {
         BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
         rw.setUniqueId(id.getTaskId());
         workerz.put(p.getUniqueId(), rw);
-        if (rw instanceof FadeWorker) {
-            send(p, "&aYour armor is activated, using &bfade &acoloring.");
-        } else if (rw instanceof SyncWorker) {
-            send(p, "&aYour armor is activated, using &bsync &acoloring.");
-        } else if (rw instanceof HealthWorker) {
-            send(p, "&aYour armor is activated, using &bhealth &acoloring.");
-        }
+        send(p, "&aYour armor is activated, using &b" + rw.getType() + " &acoloring.");
         send(p, "&dUse /rg off or logout to stop armor coloring!");
     }
     

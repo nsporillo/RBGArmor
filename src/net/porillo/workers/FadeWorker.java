@@ -40,4 +40,8 @@ public class FadeWorker extends Worker {
         return RainbowGear.rb[++c];
     }
 
+    @Override
+    public String getType() {
+        return "health";
+    }
 }

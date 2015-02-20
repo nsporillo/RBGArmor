@@ -39,4 +39,9 @@ public class SyncWorker extends Worker {
             c = -1;
         return RainbowGear.rb[++c];
     }
+
+    @Override
+    public String getType() {
+        return "sync";
+    }  
 }
