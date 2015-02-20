@@ -1,3 +1,26 @@
 # Languages file for RGBArmor
 # Use & for color coding where needed
 # But not every field can use color coding
+
+title-prefix: RGB
+title-name: RGBArmor
+sync-name: sync
+fade-name: fade
+health-name: health
+sync-desc: All armor pieces are updated with same color
+fade-desc: Each armor piece gets the next color update
+health-desc: Armor color is based on health
+activate-msg: '&aYour armor is activated, using &b%mode &acoloring.'
+disable-reminder: '&dUse /rgb off or logout to stop armor coloring!'
+no-permission: '&cYou do not have permission to use that command!'
+debug-usage: Toggles a armor debug scoreboard
+list-usage: List available coloring modes
+list-header: '&2%dash &9Available Modes&2 %dash'
+list-output: '- &b%mode: &3%description'
+off-usage: Disables your armor coloring
+off-success: '&eSuccess. Deactivated your armor.'
+off-failure: '&cError: Your armor is not updating, &ecant disable.'
+set-usage: Sets your equiped armor's mode
+set-error: '&cError: Use ''/rgb off'' first to change mode'
+set-success: '&eSuccess! &aColoring mode has been set to &b%mode&a.'
+set-failure: '&cError: The mode ''&f%mode&c'' is not recognized.'
