@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,7 +28,7 @@ public class Utility {
     }
 
     /**
-     * Sets lore to a players armor 
+     * Sets lore to a players armor
      * 
      * @param p Player to set lore for armor
      * @param str Lore string
@@ -40,13 +41,13 @@ public class Utility {
             if (is != null && (meta = is.getItemMeta()) instanceof LeatherArmorMeta) {
                 if (meta.hasLore()) {
                     List<String> localAdd = new ArrayList<String>();
-                    for(String l : meta.getLore()) {
-                        if(!l.startsWith("RG|")) {
+                    for (String l : meta.getLore()) {
+                        if (!l.startsWith("RG|")) {
                             localAdd.add(l);
                         }
                     }
                     lores.addAll(localAdd);
-                } 
+                }
                 meta.setLore(lores);
                 is.setItemMeta(meta);
             }
@@ -60,12 +61,13 @@ public class Utility {
      */
     public static boolean isWorthy(ItemMeta meta) {
         if (meta.hasLore()) {
-            return meta.getLore().contains("RG|Fade") || meta.getLore().contains("RG|Sync");
+            return meta.getLore().contains("RG|Fade") || meta.getLore().contains("RG|Sync")
+                    || meta.getLore().contains("RG|Health");
         }
         return false;
     }
 
     public static void send(Player player, String str) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
-    }
+    } 
 }

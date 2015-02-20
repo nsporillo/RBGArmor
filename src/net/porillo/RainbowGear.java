@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import net.porillo.workers.FadeWorker;
+import net.porillo.workers.HealthWorker;
 import net.porillo.workers.SyncWorker;
 import net.porillo.workers.Worker;
 
@@ -20,6 +21,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -95,9 +97,9 @@ public class RainbowGear extends JavaPlugin implements Listener {
                     // static for now
                     String dash = getSym("-", 8);
                     send(p, "&2" + dash + " &9Available Modes&2 " + dash);
-                    send(p, "- &bSync: &3All armor pieces updated in sync");
+                    send(p, "- &bSync: &3All armor pieces are updated with same color");
                     send(p, "- &bFade: &3Every armor update, next color is used");
-                    send(p, "- &cNote: Just try them out ;)");
+                    send(p, "- &bHelath: &3Armor color is based on health");
                 } else if (one.equalsIgnoreCase("debug")) {
                     if(sender.hasPermission("rainbowgear.debug")) {
                         UUID uuid = p.getUniqueId();
@@ -140,6 +142,10 @@ public class RainbowGear extends JavaPlugin implements Listener {
                         if (sender.hasPermission("rainbowgear.set.sync")) {
                             toAdd += "RG|Sync";
                         }
+                    } else if (two.equalsIgnoreCase("health")) {
+                        if (sender.hasPermission("rainbowgear.set.health")) {
+                            toAdd += "RG|Health";
+                        }
                     } else {
                         send(p, "&cThe mode &4'" + two + "'&c is not recognized.");
                         return true;
@@ -165,6 +171,17 @@ public class RainbowGear extends JavaPlugin implements Listener {
             workerz.remove(uuid);
         }
     }
+    
+    @EventHandler
+    public void onDeath(PlayerDeathEvent e) {
+        final UUID uuid = e.getEntity().getUniqueId();
+        if (workerz.containsKey(uuid)) {
+            Worker w = workerz.get(uuid);
+            Bukkit.getScheduler().cancelTask(w.getUniqueId());
+            workerz.remove(uuid);
+            send(e.getEntity(), "death");
+        }
+    }
 
     @EventHandler
     public void onSneak(PlayerToggleSneakEvent e) {
@@ -187,10 +204,12 @@ public class RainbowGear extends JavaPlugin implements Listener {
 
     private Worker getWorker(Player p, List<String> lores) {
         for (String lore : lores) {
-            if (lore.equalsIgnoreCase("RG|Fade")) {
+            if (lore.equals("RG|Fade")) {
                 return new FadeWorker(p.getUniqueId());
-            } else if (lore.equalsIgnoreCase("RG|Sync")) {
+            } else if (lore.equals("RG|Sync")) {
                 return new SyncWorker(p.getUniqueId());
+            } else if (lore.equals("RG|Health")) {
+                return new HealthWorker(p.getUniqueId());
             }
         }
         return null;
@@ -205,6 +224,8 @@ public class RainbowGear extends JavaPlugin implements Listener {
             send(p, "&aYour armor is activated, using &bfade &acoloring.");
         } else if (rw instanceof SyncWorker) {
             send(p, "&aYour armor is activated, using &bsync &acoloring.");
+        } else if (rw instanceof HealthWorker) {
+            send(p, "&aYour armor is activated, using &bhealth &acoloring.");
         }
         send(p, "&dUse /rg off or logout to stop armor coloring!");
     }
