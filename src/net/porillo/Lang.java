@@ -40,11 +40,11 @@ public enum Lang {
     LIST_OUTPUT("list-output", "- &b%mode: &3%description"),
     OFF_USAGE("off-usage", "Disables your armor coloring"),
     OFF_SUCCESS("off-success", "&eSuccess. Deactivated your armor."),
-    OFF_FAILURE("off-failure", "&cError: Your armor is not updating, &ecant turn off."),
+    OFF_FAILURE("off-failure", "&cError: Your armor is not updating, &ecant disable."),
     SET_USAGE("set-usage", "Sets your equiped armor's mode"),
     SET_ERROR("set-error", "&cError: Use '/rgb off' first to change mode"),
-    SET_SUCCESS("set-success", "&eSuccess! &aSet coloring mode to &b%mode&a."),
-    SET_FAILURE("set-failure", "&cThe mode &4'%mode'&c is not recognized.");
+    SET_SUCCESS("set-success", "&eSuccess! &aColoring mode has been set to &b%mode&a."),
+    SET_FAILURE("set-failure", "&cError: The mode '&f%mode&c' is not recognized.");
 
     private String path;
     private String def;
