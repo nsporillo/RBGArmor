@@ -10,7 +10,7 @@ public class Config {
         rg.saveDefaultConfig();
         colors = rg.getConfig().getInt("Core.Colors", 64);
         refreshRate = rg.getConfig().getInt("Core.RefreshRate", 5);
-        debug = rg.getConfig().getBoolean("Core.Debug", true);
+        debug = rg.getConfig().getBoolean("Core.Debug", false);
     }
 
     public int getColors() {

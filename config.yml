@@ -4,4 +4,4 @@
 Core:
   Colors: 64
   RefreshRate: 5
-  Debug: true
+  Debug: false
