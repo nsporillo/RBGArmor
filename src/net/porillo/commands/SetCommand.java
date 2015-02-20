@@ -46,10 +46,10 @@ public class SetCommand extends BaseCommand {
                 }
             }
             if (toAdd == "") {
-                send(p, Lang.SET_FAILURE.format(two));
+                send(p, Lang.SET_FAILURE.replace("%mode", two));
             } else {
                 setLore(p, toAdd);
-                send(p, Lang.SET_SUCCESS.format(two));
+                send(p, Lang.SET_SUCCESS.replace("%mode", two));
             }
         }
     }

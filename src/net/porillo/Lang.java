@@ -25,9 +25,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public enum Lang {
     TITLE_PREFIX("title-prefix", "RGB"),
     TITLE("title-name", "RGBArmor"),
-    RED("color-red", "&cRed"),
-    GREEN("color-red", "&2Green"),
-    BLUE("color-red", "&9Blue"),
     SYNC_NAME("sync-name", "sync"),
     FADE_NAME("fade-name", "fade"),
     HEALTH_NAME("health-name", "health"),
@@ -37,7 +34,6 @@ public enum Lang {
     ACTIVATE("activate-msg", "&aYour armor is activated, using &b%mode &acoloring."),
     DISABLERMD("disb-reminder", "&dUse /rgb off or logout to stop armor coloring!"),
     NOPERMS("no-permission", "&cYou do not have permission to use that command!"),
-    DEBUG("debug-name", "debug"),
     DEBUG_USAGE("debug-usage", "Toggles a armor debug scoreboard"),
     LIST_USAGE("list-usage", "List available coloring modes"),
     LIST_HEADER("list-header", "&2%dash &9Available Modes&2 %dash"),
@@ -74,16 +70,16 @@ public enum Lang {
         LANG = config;
     }
 
-    public String format(Object... args) {
-        return String.format(toString(), args);
-    }
-
     @Override
     public String toString() {
         if (this == TITLE)
             return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def))
                     + " ";
         return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def));
+    }
+    
+    public String replace(String string, String two) {
+        return toString().replace(string, two);
     }
 
     /**

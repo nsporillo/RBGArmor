@@ -62,15 +62,15 @@ public class DebugWindow {
             }
         }
         if (color != null) {
-            Score red = obj.getScore(Lang.RED.toString() + ": ");
+            Score red = obj.getScore("Red: ");
             red.setScore(color.getRed());
-            Score green = obj.getScore(Lang.GREEN.toString() + ": ");
+            Score green = obj.getScore("Green: ");
             green.setScore(color.getGreen());
-            Score blue = obj.getScore(Lang.BLUE.toString() + ": ");
+            Score blue = obj.getScore("Blue: ");
             blue.setScore(color.getBlue());
         }
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(Lang.TITLE.toString() + " " + Lang.DEBUG.toString());
+        obj.setDisplayName(Lang.TITLE.toString() + " Debug");
         player.setScoreboard(board);
     }
 
