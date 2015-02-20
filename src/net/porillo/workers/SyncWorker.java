@@ -44,5 +44,5 @@ public class SyncWorker extends Worker {
     @Override
     public String getType() {
         return Lang.SYNC_NAME.toString();
-    }  
+    }
 }

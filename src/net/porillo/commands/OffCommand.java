@@ -29,8 +29,8 @@ public class OffCommand extends BaseCommand {
             this.noPermission(s);
             return;
         }
-        if(s instanceof Player) {
-            Player p = (Player)s;
+        if (s instanceof Player) {
+            Player p = (Player) s;
             final UUID uuid = p.getUniqueId();
             Map<UUID, Worker> workerz = plugin.getWorkers();
             if (workerz.containsKey(uuid)) {

@@ -28,17 +28,17 @@ public class SetCommand extends BaseCommand {
             this.noPermission(s);
             return;
         }
-        if(s instanceof Player) {
-            Player p = (Player)s;
+        if (s instanceof Player) {
+            Player p = (Player) s;
             String toAdd = "";
             String two = args.get(0);
             if (plugin.getWorkers().containsKey(p.getUniqueId())) {
                 send(p, Lang.SET_ERROR.toString());
                 return;
             }
-            for(Mode m : Mode.values()) {
-                if(m.name().equalsIgnoreCase(two)) {
-                    if(p.hasPermission("rgbarmor.set." + m.name().toLowerCase())) {
+            for (Mode m : Mode.values()) {
+                if (m.name().equalsIgnoreCase(two)) {
+                    if (p.hasPermission("rgbarmor.set." + m.name().toLowerCase())) {
                         toAdd = Lang.TITLE_PREFIX.toString() + "|" + m.toString();
                     } else {
                         super.noPermission(s);
@@ -49,8 +49,8 @@ public class SetCommand extends BaseCommand {
                 send(p, Lang.SET_FAILURE.format(two));
             } else {
                 setLore(p, toAdd);
-                send(p, Lang.SET_SUCCESS.format(two));                       
+                send(p, Lang.SET_SUCCESS.format(two));
             }
         }
-    }  
+    }
 }

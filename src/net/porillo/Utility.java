@@ -68,15 +68,15 @@ public class Utility {
      */
     public static boolean isWorthy(ItemMeta meta) {
         if (meta.hasLore()) {
-            for(String s : meta.getLore()) {
-                if(s.startsWith(TITLE_PREFIX.toString() + "|")) {
+            for (String s : meta.getLore()) {
+                if (s.startsWith(TITLE_PREFIX.toString() + "|")) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
+
     /**
      * Gets the worker based on lore
      * 
@@ -100,7 +100,7 @@ public class Utility {
     public static void send(Player player, String str) {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }
-    
+
     public static void send(CommandSender sender, String str) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', str));
     }

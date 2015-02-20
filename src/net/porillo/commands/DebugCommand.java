@@ -26,19 +26,19 @@ public class DebugCommand extends BaseCommand {
             this.noPermission(s);
             return;
         }
-        if(s instanceof Player) {
-           Player p = (Player)s;
-           UUID uuid = p.getUniqueId();
-           Map<UUID, DebugWindow> debuggers = plugin.getDebuggers();
-           if(debuggers.containsKey(uuid)) {
-               DebugWindow dw = debuggers.get(uuid);
-               dw.close();
-               debuggers.remove(uuid);
-           } else {
-               DebugWindow dw = new DebugWindow(plugin, p);
-               debuggers.put(uuid, dw);                          
-               dw.display();
-           }
-        }     
+        if (s instanceof Player) {
+            Player p = (Player) s;
+            UUID uuid = p.getUniqueId();
+            Map<UUID, DebugWindow> debuggers = plugin.getDebuggers();
+            if (debuggers.containsKey(uuid)) {
+                DebugWindow dw = debuggers.get(uuid);
+                dw.close();
+                debuggers.remove(uuid);
+            } else {
+                DebugWindow dw = new DebugWindow(plugin, p);
+                debuggers.put(uuid, dw);
+                dw.display();
+            }
+        }
     }
 }

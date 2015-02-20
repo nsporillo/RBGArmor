@@ -42,13 +42,13 @@ public class DebugWindow {
     }
 
     public void show(Scoreboard board, Objective obj) {
-        if(!main.getWorkers().containsKey(player.getUniqueId())) {
+        if (!main.getWorkers().containsKey(player.getUniqueId())) {
             return;
         }
         ItemStack[] armor = player.getInventory().getArmorContents();
         ItemStack is = null;
-        for(int i = 0; i < armor.length; i++) {
-            if(armor[i] != null) {
+        for (int i = 0; i < armor.length; i++) {
+            if (armor[i] != null) {
                 is = armor[i];
                 break;
             }
@@ -61,14 +61,14 @@ public class DebugWindow {
                 color = lam.getColor();
             }
         }
-        if(color != null) {
+        if (color != null) {
             Score red = obj.getScore(Lang.RED.toString() + ": ");
             red.setScore(color.getRed());
             Score green = obj.getScore(Lang.GREEN.toString() + ": ");
             green.setScore(color.getGreen());
             Score blue = obj.getScore(Lang.BLUE.toString() + ": ");
             blue.setScore(color.getBlue());
-        } 
+        }
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         obj.setDisplayName(Lang.TITLE.toString() + " " + Lang.DEBUG.toString());
         player.setScoreboard(board);

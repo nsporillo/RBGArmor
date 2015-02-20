@@ -28,7 +28,7 @@ public class ListCommand extends BaseCommand {
         }
         String dash = getSym("-", 8);
         send(s, Lang.LIST_HEADER.format(dash));
-        for(Mode m : Mode.values()) {
+        for (Mode m : Mode.values()) {
             send(s, Lang.LIST_OUTPUT.format(m.toString(), m.getDescription()));
         }
     }
