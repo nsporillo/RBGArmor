@@ -10,7 +10,10 @@ RBGArmor is a dynamic armor coloring shifting plugin. Armor with RGB lore shifts
 
 ## Examples
 ![alt text](http://nick.porillo.net/images/rg.gif "Example")
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_9clpKAwDKs" frameborder="0" allowfullscreen></iframe>
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=_9clpKAwDKs
+" target="_blank"><img src="http://img.youtube.com/vi/_9clpKAwDKs/0.jpg" 
+alt="HealthWorker" width="480" height="270" border="10" /></a>
 
 ## Commands
 - /rgb : Base command for RBGArmor, displays help
