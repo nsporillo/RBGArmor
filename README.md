@@ -8,9 +8,9 @@ RBGArmor is a dynamic armor coloring shifting plugin. Armor with RGB lore shifts
 ### Notice
 - RBGArmor is a premium plugin on the [SpigotMC](http://www.spigotmc.org/resources/) , if you use this plugin and your server makes money, please support development and purchase the resource. If for some reason you cannot pay and would like a copy, I can make exceptions - just contact me.  
 
-## Example
+## Examples
 ![alt text](http://nick.porillo.net/images/rg.gif "Example")
-- Note: Gif is sped up, actual speed based on config
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_9clpKAwDKs" frameborder="0" allowfullscreen></iframe>
 
 ## Commands
 - /rgb : Base command for RBGArmor, displays help
