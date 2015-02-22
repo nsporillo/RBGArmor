@@ -134,6 +134,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void loadLang() {
         File lang = new File(getDataFolder(), "lang.yml");
         OutputStream out = null;
