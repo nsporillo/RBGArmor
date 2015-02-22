@@ -44,7 +44,10 @@ public enum Lang {
     SET_USAGE("set-usage", "Sets your equiped armor's mode"),
     SET_ERROR("set-error", "&cError: Use '/rgb off' first to change mode"),
     SET_SUCCESS("set-success", "&eSuccess! &aColoring mode has been set to &b%mode&a."),
-    SET_FAILURE("set-failure", "&cError: The mode '&f%mode&c' is not recognized.");
+    SET_FAILURE("set-failure", "&cError: The mode '&f%mode&c' is not recognized."),
+    KIT_USAGE("kit-usage", "Adds a full leather armor kit to your inventory"),
+    KIT_SUCCESS("kit-sucess", "&eSuccess. You now have a leather armor kit."),
+    KIT_INVFULL("kit-invfull", "&cError: Could not add entire kit, inventory is full.");
 
     private String path;
     private String def;

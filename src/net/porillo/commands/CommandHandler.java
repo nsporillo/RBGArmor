@@ -18,10 +18,11 @@ public class CommandHandler {
     private Map<String, Command> cmds = new HashMap<String, Command>();
 
     public CommandHandler(RBGArmor plugin) {
-        cmds.put("debug", new DebugCommand(plugin));
-        cmds.put("off", new OffCommand(plugin));
+        cmds.put("kit", new KitCommand(plugin));
         cmds.put("set", new SetCommand(plugin));
         cmds.put("list", new ListCommand(plugin));
+        cmds.put("off", new OffCommand(plugin));       
+        cmds.put("debug", new DebugCommand(plugin));
     }
 
     public void runCommand(CommandSender s, String l, String[] a) {
