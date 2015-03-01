@@ -5,13 +5,13 @@
 	<artifactId>RBGArmor</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>RBGArmor</name>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
-	    <defaultGoal>clean package install</defaultGoal>
+		<defaultGoal>clean package install</defaultGoal>
 		<finalName>RBGArmor</finalName>
 		<sourceDirectory>${basedir}/src/</sourceDirectory>
 		<resources>

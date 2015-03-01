@@ -1,7 +1,7 @@
 name: RBGArmor
 author: milkywayz 
 main: net.porillo.RBGArmor
-version: 1.0
+version: ${project.version}
 commands:   
     rgbarmor:      
       aliases: rgb      
