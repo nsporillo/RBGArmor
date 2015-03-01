@@ -1,7 +1,27 @@
 # RBGArmor config
-# Colors is how many possible colors armor can have (lower = more efficient)
-# RefreshRate is how many ticks armor is updated (higher = more efficient)
-Core:
-  Colors: 64
-  RefreshRate: 5
-  Debug: false
+# Report issues https://github.com/nsporillo/RBGArmor/issues
+ 
+core:
+  # How many colors will we generate?
+  # The more colors, the smoother the color transition
+  colors: 64
+  
+  # How fast should armor be refreshed?
+  # 5 = 4 times per second, a good default speed :)
+  # If you change core.colors, consider updating refresh-rate too
+  refresh-rate: 5
+  
+  # Enable if you are having issues and need to troubleshoot
+  debug: false
+  
+integration:
+  # Force permission to even have coloring armor
+  # Useful for disabling stray rgbarmor sets if they're a perk
+  force-perms-to-colorize: false
+  
+  # Your donor store URL
+  # To enable, replace none with your servers donor store url
+  # URL is sent to players when they dont have permission for RGBArmor
+  # Configure the message in the lang file!
+  store-url: none
+  
