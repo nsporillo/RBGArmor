@@ -23,6 +23,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * An enum for requesting strings from the language file.
  */
 public enum Lang {
+
     TITLE_PREFIX("title-prefix", "RGB"),
     TITLE("title-name", "RGBArmor"),
     SYNC_NAME("sync-name", "sync"),
@@ -35,6 +36,7 @@ public enum Lang {
     DISABLERMD("disable-reminder", "&dUse /rgb off or logout to stop armor coloring!"),
     NOPERMS("no-permission", "&cYou do not have permission to use that command!"),
     DEBUG_USAGE("debug-usage", "Toggles a armor debug scoreboard"),
+    HELP_HEADER("help-header", "&2%dash&9 %title &2%dash"),
     LIST_USAGE("list-usage", "List available coloring modes"),
     LIST_HEADER("list-header", "&2%dash &9Available Modes&2 %dash"),
     LIST_OUTPUT("list-output", "- &b%mode: &3%description"),
@@ -47,7 +49,9 @@ public enum Lang {
     SET_FAILURE("set-failure", "&cError: The mode '&f%mode&c' is not recognized."),
     KIT_USAGE("kit-usage", "Adds a full leather armor kit to your inventory"),
     KIT_SUCCESS("kit-sucess", "&eSuccess. You now have a leather armor kit."),
-    KIT_INVFULL("kit-invfull", "&cError: Could not add entire kit, inventory is full.");
+    KIT_INVFULL("kit-invfull", "&cError: Could not add entire kit, inventory is full."),
+    CANT_USE_URL("cant-use-url", "&eUnlock that special armor on &6%store &e:)"),
+    CANT_USE_NOURL("cant-use-nourl", "&cError: You dont have permission to use that armor.");
 
     private String path;
     private String def;
@@ -76,16 +80,15 @@ public enum Lang {
     @Override
     public String toString() {
         if (this == TITLE)
-            return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def))
-                    + " ";
+            return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def)) + " ";
         return ChatColor.translateAlternateColorCodes('&', LANG.getString(this.path, def));
     }
-    
+
     public String replace(String string, String two) {
         return toString().replace(string, two);
     }
-    
-    public  String cap() {
+
+    public String cap() {
         return Character.toUpperCase(toString().charAt(0)) + toString().substring(1).toLowerCase();
     }
 

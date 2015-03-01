@@ -1,6 +1,7 @@
 package net.porillo.commands;
 
-import static net.porillo.util.Utility.*;
+import static net.porillo.util.Utility.getSym;
+import static net.porillo.util.Utility.send;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class CommandHandler {
         cmds.put("kit", new KitCommand(plugin));
         cmds.put("set", new SetCommand(plugin));
         cmds.put("list", new ListCommand(plugin));
-        cmds.put("off", new OffCommand(plugin));       
+        cmds.put("off", new OffCommand(plugin));
         cmds.put("debug", new DebugCommand(plugin));
     }
 
@@ -41,7 +42,7 @@ public class CommandHandler {
 
     public void showHelp(CommandSender s, String l) {
         String dash = getSym("-", 8);
-        send(s, "&2" + dash + "&9 " + Lang.TITLE.toString() + " &2" + dash);
+        send(s, Lang.HELP_HEADER.replace("%title", Lang.TITLE.toString()).replace("%dash", dash));
         for (Command cmd : this.cmds.values()) {
             if (cmd.checkPermission(s)) {
                 cmd.showHelp(s, l);

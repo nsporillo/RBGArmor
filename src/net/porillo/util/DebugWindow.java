@@ -82,12 +82,11 @@ public class DebugWindow {
             green.setScore(color.getGreen());
             Score blue = obj.getScore("Blue: ");
             blue.setScore(color.getBlue());
-        }        
+        }
     }
 
     /**
-     * Clear scoreboard
-     * Clear update task
+     * Clear scoreboard Clear update task
      */
     public void close() {
         player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);

@@ -1,6 +1,5 @@
 package net.porillo.util;
 
-
 public enum Mode {
 
     SYNC(Lang.SYNC_NAME.cap(), Lang.SYNC_DESC.toString()),
@@ -10,11 +9,11 @@ public enum Mode {
     private String desc;
     private String name;
 
-    Mode(String name, String desc) {       
+    Mode(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }
-    
+
     public String getName() {
         return name;
     }
