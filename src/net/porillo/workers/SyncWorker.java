@@ -2,14 +2,14 @@ package net.porillo.workers;
 
 import java.util.UUID;
 
-import org.bukkit.Color;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-
 import net.porillo.RBGArmor;
 import net.porillo.util.Lang;
 import net.porillo.util.Mode;
 import net.porillo.util.Utility;
+
+import org.bukkit.Color;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class SyncWorker extends Worker {
 
@@ -46,7 +46,7 @@ public class SyncWorker extends Worker {
     public String getType() {
         return Lang.SYNC_NAME.toString();
     }
-    
+
     @Override
     public Mode getMode() {
         return Mode.SYNC;

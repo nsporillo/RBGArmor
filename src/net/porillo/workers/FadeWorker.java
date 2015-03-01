@@ -46,7 +46,7 @@ public class FadeWorker extends Worker {
     public String getType() {
         return Lang.FADE_NAME.toString();
     }
-    
+
     @Override
     public Mode getMode() {
         return Mode.FADE;

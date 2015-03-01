@@ -62,7 +62,7 @@ public class HealthWorker extends Worker {
     public String getType() {
         return Lang.HEALTH_NAME.toString();
     }
-    
+
     @Override
     public Mode getMode() {
         return Mode.HEALTH;

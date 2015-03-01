@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import net.porillo.RBGArmor;
+import net.porillo.util.Lang;
+import net.porillo.util.Permission;
+import net.porillo.workers.Worker;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import net.porillo.RBGArmor;
-import net.porillo.util.Lang;
-import net.porillo.workers.Worker;
 
 public class OffCommand extends BaseCommand {
 
@@ -20,7 +21,7 @@ public class OffCommand extends BaseCommand {
         super(plugin);
         super.setName("off");
         super.addUsage(Lang.OFF_USAGE.toString());
-        super.setPermission("rgbarmor.off");
+        super.setPermission(Permission.OFF.node());
     }
 
     @Override

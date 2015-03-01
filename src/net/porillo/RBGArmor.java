@@ -2,7 +2,9 @@ package net.porillo;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
-import static net.porillo.util.Utility.*;
+import static net.porillo.util.Utility.debug;
+import static net.porillo.util.Utility.getWorker;
+import static net.porillo.util.Utility.send;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,6 +43,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
     private CommandHandler handler;
     private Map<UUID, DebugWindow> debuggers;
     private Map<UUID, Worker> workerz;
+    private Map<UUID, Long> sneaks;
     private static Config config;
     public static Color[] rb;
 
@@ -50,6 +53,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
         handler = new CommandHandler(this);
         workerz = new HashMap<UUID, Worker>();
         debuggers = new HashMap<UUID, DebugWindow>();
+        sneaks = new HashMap<UUID, Long>();
         config = new Config(this);
         rb = new Color[config.getColors()];
         Bukkit.getPluginManager().registerEvents(this, this);
@@ -65,9 +69,9 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     double b = sin(f * i + (4 * PI / 3)) * 127.0D + 128.0D;
                     rb[i] = Color.fromRGB((int) r, (int) g, (int) b);
                 }
-                debug("RGBArmor enabled, using " + colors + " colors");
+                debug(config.toString());
             }
-        });       
+        });
     }
 
     @Override
@@ -92,10 +96,20 @@ public class RBGArmor extends JavaPlugin implements Listener {
         this.removeUUID(e.getEntity().getUniqueId());
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onSneak(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
         if (!workerz.containsKey(p.getUniqueId())) {
+            // use a little CPU to prevent network abuse
+            // if player has rgb armor, but no perms, and spam sneaks
+            // they would trigger a TON of message sends (lines 131, 133)
+            if(sneaks.containsKey(p.getUniqueId())) {
+                long last = sneaks.get(p.getUniqueId());
+                if(System.currentTimeMillis() - last < 5000) {
+                    return;
+                }
+                sneaks.remove(p.getUniqueId());
+            }
             for (ItemStack is : p.getInventory().getArmorContents()) {
                 ItemMeta meta;
                 if (is != null && (meta = is.getItemMeta()) instanceof LeatherArmorMeta) {
@@ -112,14 +126,24 @@ public class RBGArmor extends JavaPlugin implements Listener {
     }
 
     private void initWorker(Player p, Worker rw) {
+        if (config.shouldForcePermsToColorize() && !p.hasPermission(rw.getPermission())) {
+            if (config.isIntegrating()) {
+                send(p, Lang.CANT_USE_URL.replace("%store", config.getStoreLink()));
+            } else {
+                send(p, Lang.CANT_USE_NOURL.toString());
+            }
+            sneaks.put(p.getUniqueId(), System.currentTimeMillis());
+            debug("Denied " + p.getName() + " to use " + rw.getType() + " armor");
+            return;
+        }
         int rr = config.getRefreshRate();
         BukkitTask id = Bukkit.getScheduler().runTaskTimer(this, rw, rr, rr);
         rw.setUniqueId(id.getTaskId());
         workerz.put(p.getUniqueId(), rw);
         send(p, Lang.ACTIVATE.replace("%mode", rw.getType()));
         send(p, Lang.DISABLERMD.toString());
-        if(config.shouldDebug()) {
-            debug("New worker for " + p.getName() + ", type: " + rw.getMode().getName());
+        if (config.shouldDebug()) {
+            debug("New worker for " + p.getName() + ", type: " + rw.getType());
         }
     }
 
@@ -128,7 +152,7 @@ public class RBGArmor extends JavaPlugin implements Listener {
             Worker w = workerz.get(uuid);
             Bukkit.getScheduler().cancelTask(w.getUniqueId());
             workerz.remove(uuid);
-            if(config.shouldDebug()) {
+            if (config.shouldDebug()) {
                 debug("Removed: " + uuid.toString());
             }
         }
@@ -150,12 +174,10 @@ public class RBGArmor extends JavaPlugin implements Listener {
                     while ((read = defLangStream.read(bytes)) != -1) {
                         out.write(bytes, 0, read);
                     }
-                    YamlConfiguration defConfig = YamlConfiguration
-                            .loadConfiguration(defLangStream);
+                    YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defLangStream);
                     Lang.setFile(defConfig);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
                 getLogger().severe("[RGBArmor] Couldn't create language file.");
                 this.setEnabled(false);
             } finally {

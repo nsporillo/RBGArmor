@@ -5,11 +5,12 @@ import static net.porillo.util.Utility.send;
 
 import java.util.List;
 
-import org.bukkit.command.CommandSender;
-
 import net.porillo.RBGArmor;
 import net.porillo.util.Lang;
 import net.porillo.util.Mode;
+import net.porillo.util.Permission;
+
+import org.bukkit.command.CommandSender;
 
 public class ListCommand extends BaseCommand {
 
@@ -17,7 +18,7 @@ public class ListCommand extends BaseCommand {
         super(plugin);
         super.setName("list");
         super.addUsage(Lang.LIST_USAGE.toString());
-        super.setPermission("rgbarmor.list");
+        super.setPermission(Permission.LIST.node());
     }
 
     @Override

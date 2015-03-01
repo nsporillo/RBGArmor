@@ -3,6 +3,7 @@ package net.porillo.workers;
 import java.util.UUID;
 
 import net.porillo.util.Mode;
+import net.porillo.util.Permission;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.PlayerInventory;
@@ -12,8 +13,13 @@ public abstract class Worker implements Runnable {
     protected PlayerInventory inv;
     private int uid;
 
+    public abstract String getType();
+
+    public abstract Mode getMode();
+
     /**
      * Worker constructor
+     * 
      * @param uuid {@code Player}'s UUID
      */
     public Worker(UUID uuid) {
@@ -22,6 +28,7 @@ public abstract class Worker implements Runnable {
 
     /**
      * Get the task id for this worker
+     * 
      * @return workers task id
      */
     public int getUniqueId() {
@@ -30,7 +37,8 @@ public abstract class Worker implements Runnable {
 
     /**
      * Set the task id for this worker
-     * @param taskid {@code BukkitTask} task id 
+     * 
+     * @param taskid {@code BukkitTask} task id
      */
     public void setUniqueId(int taskid) {
         this.uid = taskid;
@@ -38,13 +46,14 @@ public abstract class Worker implements Runnable {
 
     /**
      * Gets player inventory associated with this worker
-     * @return {@code PlayerInventory} 
+     * 
+     * @return {@code PlayerInventory}
      */
     public PlayerInventory getInventory() {
         return inv;
     }
 
-    public abstract String getType();
-    
-    public abstract Mode getMode();
+    public String getPermission() {
+        return Permission.USE_MODE.format(getType());
+    }
 }

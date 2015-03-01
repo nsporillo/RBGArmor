@@ -5,12 +5,13 @@ import static net.porillo.util.Utility.setLore;
 
 import java.util.List;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import net.porillo.RBGArmor;
 import net.porillo.util.Lang;
 import net.porillo.util.Mode;
+import net.porillo.util.Permission;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SetCommand extends BaseCommand {
 
@@ -19,7 +20,7 @@ public class SetCommand extends BaseCommand {
         super.setName("set");
         super.setRequiredArgs(1);
         super.addUsage(Lang.SET_USAGE.toString(), "mode");
-        super.setPermission("rgbarmor.set");
+        super.setPermission(Permission.SET.node());
     }
 
     @Override
@@ -38,7 +39,7 @@ public class SetCommand extends BaseCommand {
             }
             for (Mode m : Mode.values()) {
                 if (m.getName().equalsIgnoreCase(two)) {
-                    if (p.hasPermission("rgbarmor.set." + m.getName().toLowerCase())) {
+                    if (p.hasPermission(Permission.SET_MODE.format(m.getName().toLowerCase()))) {
                         toAdd = Lang.TITLE_PREFIX.toString() + "|" + m.getName();
                     } else {
                         super.noPermission(s);

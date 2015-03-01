@@ -66,6 +66,7 @@ public class Utility {
 
     /**
      * Checks if armor is worthy to color
+     * 
      * @param meta armors {@code ItemMeta}
      * @return true if item has correct lore
      */
@@ -104,6 +105,7 @@ public class Utility {
 
     /**
      * Dispatches color formatted message to {@code Player}
+     * 
      * @param sender receiver
      * @param str message
      */
@@ -113,6 +115,7 @@ public class Utility {
 
     /**
      * Dispatches color formatted message to {@code CommandSender}
+     * 
      * @param sender receiver
      * @param str message
      */
@@ -121,10 +124,15 @@ public class Utility {
     }
 
     /**
-     * Debug to console 
+     * Debug to console
+     * 
      * @param message debug
      */
     public static void debug(String message) {
         logger.info("[RGBArmor][Debug] " + message);
+    }
+
+    public static void log(String message) {
+        logger.info("[RGBArmor] " + message);
     }
 }

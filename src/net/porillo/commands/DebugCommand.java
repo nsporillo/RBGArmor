@@ -7,6 +7,7 @@ import java.util.UUID;
 import net.porillo.RBGArmor;
 import net.porillo.util.DebugWindow;
 import net.porillo.util.Lang;
+import net.porillo.util.Permission;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ public class DebugCommand extends BaseCommand {
         super(plugin);
         super.setName("debug");
         super.addUsage(Lang.DEBUG_USAGE.toString());
-        super.setPermission("rgbarmor.debug");
+        super.setPermission(Permission.DEBUG.node());
     }
 
     @Override
