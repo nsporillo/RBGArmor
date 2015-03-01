@@ -18,9 +18,10 @@ alt="HealthWorker" width="480" height="270" border="10" /></a>
 ## Commands
 - /rgb : Base command for RBGArmor, displays help
 - /rgb off - Turns off armor coloring
-- /rgb set mode - Sets your armor coloring mode 
-- /rgb list - Lists the available coloring modes
-- /rgb debug - Displays dynamic debug scoreboard for armor color
+- /rgb set mode - Sets your equiped armor's mode
+- /rgb kit - Adds a full leather armor kit to your inventory
+- /rgb list - List available coloring modes
+- /rgb debug - Toggles a armor debug scoreboard
 
 ## Color Engine: 
 
