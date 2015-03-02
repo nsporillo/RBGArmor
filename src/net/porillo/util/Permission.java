@@ -10,8 +10,6 @@ public enum Permission {
     OFF("off"),
     SET("set"),
     SET_MODE("set.%s"),
-    USE("use"),
-    GRANT("grant"),
     USE_MODE("use.%s");
 
     private final String node;
