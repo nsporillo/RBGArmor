@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>RBGArmor</groupId>
 	<artifactId>RBGArmor</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>RBGArmor</name>
 
 	<properties>
