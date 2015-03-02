@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class HealthWorker extends Worker {
 
     private Player player;
+    private Color last;
     private Color[] colors;
 
     public HealthWorker(UUID uuid) {
@@ -22,12 +23,17 @@ public class HealthWorker extends Worker {
         this.player = Bukkit.getPlayer(uuid);
         int max = (int) (player.getMaxHealth());
         colors = getColors((max * 3) + 1);
+        last = getNext(20);
     }
 
     @Override
     public void run() {
         Color c = getNext(player.getHealth());
-        for (ItemStack is : inv.getArmorContents()) {
+        if(last == c) {
+            // dont update armor if health didnt change
+            return;
+        }
+        for (ItemStack is : inv.getArmorContents()){
             if (is != null && is.getItemMeta() instanceof LeatherArmorMeta) {
                 if (!Utility.isWorthy(is.getItemMeta())) {
                     continue;
